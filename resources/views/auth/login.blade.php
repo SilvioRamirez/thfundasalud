@@ -2,13 +2,13 @@
 
 @section('content')
 
-        <div class="container mt-4">
+        <div class="container mt-2">
             <div class="row justify-content-center">
                 <div class="col-md-6">
-                    <div class="card border-light mb-3 mt-4 shadow">
+                    <div class="card border-light mb-3 mt-2 shadow">
                         <div class="card-body">
                             <div class="text-center mb-4">
-                                <img src="{{ asset('storage/img/logo.png') }}" class="rounded" style="display: inline-block" alt="..." width="250" >
+                                <img src="{{ asset('storage/img/fundasalud.png') }}" class="rounded" style="display: inline-block" alt="..." width="200" >
                             </div>
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf

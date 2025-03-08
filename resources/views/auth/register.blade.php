@@ -2,21 +2,21 @@
 
 @section('content')
 
-<div class="container mt-4">
+<div class="container mt-2">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <div class="card border-light mb-3 mt-4 shadow">
+            <div class="card border-light mb-3 mt-2 shadow">
                 {{-- <div class="card-header bg-primary text-white"><i class="fa fa-user-plus"></i> {{ __('Register') }}</div> --}}
 
                 <div class="card-body">
                         <div class="text-center mb-4">
-                            <img src="{{ asset('storage/img/logo.png') }}" class="rounded" style="display: inline-block" alt="..." width="250" >
+                            <img src="{{ asset('storage/img/fundasalud.png') }}" class="rounded" style="display: inline-block" alt="..." width="200" >
                         </div>
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-end">Nombres y Apellidos</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -36,6 +36,34 @@
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                 @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="cedula" class="col-md-4 col-form-label text-md-end">Cedula</label>
+
+                            <div class="col-md-6">
+                                <input id="cedula" type="text" class="form-control @error('cedula') is-invalid @enderror" name="cedula" value="{{ old('cedula') }}" required autocomplete="cedula">
+
+                                @error('cedula')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="telefono" class="col-md-4 col-form-label text-md-end">Teléfono</label>
+
+                            <div class="col-md-6">
+                                <input id="telefono" type="text" class="form-control @error('telefono') is-invalid @enderror" name="telefono" value="{{ old('telefono') }}" required autocomplete="telefono">
+
+                                @error('telefono')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -80,3 +108,25 @@
 </div>
 
 @endsection
+
+@push('scripts')
+
+    <script type="module">
+
+        IMask(document.getElementById('telefono'),{
+            mask: '0000-0000000'
+        })
+
+        IMask(document.getElementById('cedula'),{
+            mask: '0000000000',
+            prepareChar: str => str.toUpperCase(),
+            definitions: {
+                // <any single char>: <same type as mask (RegExp, Function, etc.)>
+                // defaults are '0', 'a', '*'
+                'v': /[V,J,G,E,P]/
+            }
+        })
+
+    </script>
+    
+@endpush

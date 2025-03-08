@@ -15,6 +15,11 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 import Swal from 'sweetalert2';
 window.Swal = Swal;
 
+//Importamos el complemento que instalamos imask
+import Imask from 'imask';
+
+//Aqui le decimos que lo use en el documento
+window.Imask = Imask;
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

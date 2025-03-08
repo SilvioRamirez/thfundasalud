@@ -4,3 +4,14 @@
         {{ $message }}
     </div>
 @endif
+
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <strong>¡ Oh no :( !</strong> Ha ocurrido un error con la información.<br><br>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif

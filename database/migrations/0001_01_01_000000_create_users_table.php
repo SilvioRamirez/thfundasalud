@@ -20,6 +20,10 @@ return new class extends Migration
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();
+
+            //Nuevos campos
+            $table->string('cedula')->nullable();
+            $table->string('telefono')->nullable();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

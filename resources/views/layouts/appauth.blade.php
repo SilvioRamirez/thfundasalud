@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Laravel 11 - Roles y Permisos</title>
+    <title>FUNDASALAUD Trujillo</title>
 
     <!-- Fonts -->
     @googlefonts
@@ -20,7 +20,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ route('home') }}">
-                    <i class="fa-brands fa-laravel"></i> Laravel 11 Roles y Permisos
+                    <i class="fa-brands fa-laravel"></i> FUNDASALUD Trujillo
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -94,7 +94,7 @@
                             </div>
                         @endif
 
-                        <h3 class="text-center mt-3 mb-3">Laravel 11 Roles y Permisos</h3>
+                        {{-- <h3 class="text-center mt-3 mb-3">FUNDASALUD TRUJILLO</h3> --}}
                         @yield('content')
 
                         @stack('scripts')

@@ -300,27 +300,53 @@ return [
 
     'menu' => [
         // Navbar items:
-        [
+        /* [
             'type' => 'navbar-search',
             'text' => 'search',
             'topnav_right' => true,
-        ],
+        ], */
         [
             'type' => 'fullscreen-widget',
             'topnav_right' => true,
         ],
 
         // Sidebar items:
-        [
+        /* [
             'type' => 'sidebar-menu-search',
             'text' => 'Buscar',
-        ],
+        ], */
         /* ['header' => 'CARGA DE INFORMACIÓN'],*/
-        [
+        /* [
             'text' => 'Productos',
             'url' => '/products',
             'icon' => 'fa fa-cart-shopping',
             'can' => ['create-product', 'edit-product', 'delete-product', 'view-product'],
+        ], */
+        ['header' => 'MENU TRABAJADOR'],
+        [
+            'text' => 'Recibos de Pago',
+            'url' => 'user.recibopago',
+            'icon' => 'fa fa-people-line',
+            'can' => ['view-trabajador'],
+        ],
+        ['header' => 'MENU ADMINISTRACIÓN'],
+        [
+            'text' => 'Trabajadores',
+            'url' => '/trabajadors',
+            'icon' => 'fa fa-people-line',
+            'can' => ['create-trabajador', 'edit-trabajador', 'delete-trabajador', 'view-trabajador'],
+        ],
+        [
+            'text' => 'Primera Quincena',
+            'url' => '/primeraquincena',
+            'icon' => 'fa fa-1',
+            'can' => ['create-primeraquincena', 'edit-primeraquincena', 'delete-primeraquincena', 'view-primeraquincena'],
+        ],
+        [
+            'text' => 'Segunda Quincena',
+            'url' => '/segundaquincena',
+            'icon' => 'fa fa-2',
+            'can' => ['create-segundaquincena', 'edit-segundaquincena', 'delete-segundaquincena', 'view-segundaquincena'],
         ],
         [
             'text' => 'CONFIGURACIÓN',

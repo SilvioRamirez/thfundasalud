@@ -29,7 +29,19 @@ class PermissionSeeder extends Seeder
             'view-activitylog',
             'create-activitylog',
             'edit-activitylog',
-            'delete-activitylog'
+            'delete-activitylog',
+            'view-trabajador',
+            'create-trabajador',
+            'edit-trabajador',
+            'delete-trabajador',
+            'view-primeraquincena',
+            'create-primeraquincena',
+            'edit-primeraquincena',
+            'delete-primeraquincena',
+            'view-segundaquincena',
+            'create-segundaquincena',
+            'edit-segundaquincena',
+            'delete-segundaquincena'
         ];
 
         // Looping and Inserting Array's Permissions into Permission Table

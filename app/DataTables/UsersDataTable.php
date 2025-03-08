@@ -105,6 +105,8 @@ class UsersDataTable extends DataTable
             Column::make('id')->title('ID'),
             Column::make('name')->title('Nombres'),
             Column::make('email')->title('Correo'),
+            Column::make('cedula')->title('Cedula'),
+            Column::make('telefono')->title('Teléfono'),
             Column::computed('role')->title('Roles')
                     ->exportable(true)
                     ->printable(true)

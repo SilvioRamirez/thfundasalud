@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Trabajador;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class RegisterController extends Controller
 {
@@ -51,6 +53,19 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'cedula' => [
+                'required',
+                'string',
+                'max:10',
+                Rule::unique('users', 'cedula'), // La cédula debe ser única en la tabla users
+                    function ($attribute, $value, $fail) {
+                        // Verificar si la cédula existe en la tabla trabajadors
+                        if (!Trabajador::where('cedula', $value)->exists()) {
+                            $fail('La cédula no está registrada en el sistema.');
+                        }
+                    },
+                ],
+            'telefono' => ['required'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -63,9 +78,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'cedula' => $data['cedula'],
+            'telefono' => $data['telefono'],
             'password' => Hash::make($data['password']),
         ])->assignRole('user'); /* Se agrega para que cuando alguien se registre automanticamente sea con este rol */
     }
