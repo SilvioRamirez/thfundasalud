@@ -14,8 +14,8 @@ return [
     |
     */
 
-    'title' => 'Laravel 11',
-    'title_prefix' => '',
+    'title' => 'FUNDASALUD',
+    'title_prefix' => 'FUNDASALUD | ',
     'title_postfix' => '',
 
     /*
@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'use_ico_only' => false,
+    'use_ico_only' => true,
     'use_full_favicon' => false,
 
     /*
@@ -63,12 +63,12 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo' => 'FUNDASALUD',
+    'logo_img' => 'favicons/favicon-32x32.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'Admin Logo',
+    'logo_img_alt' => 'FUNDASALUD',
 
     /*
     |--------------------------------------------------------------------------
@@ -113,8 +113,8 @@ return [
         'enabled' => true,
         'mode' => 'fullscreen',
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-            'alt' => 'AdminLTE Preloader Image',
+            'path' => 'favicons/apple-touch-icon.png',
+            'alt' => 'FUNDASALUD Preloader Image',
             'effect' => 'animation__shake',
             'width' => 60,
             'height' => 60,
@@ -134,10 +134,10 @@ return [
     */
 
     'usermenu_enabled' => true,
-    'usermenu_header' => false,
+    'usermenu_header' => true,
     'usermenu_header_class' => 'bg-primary',
     'usermenu_image' => false,
-    'usermenu_desc' => false,
+    'usermenu_desc' => true,
     'usermenu_profile_url' => false,
 
     /*
@@ -154,8 +154,8 @@ return [
 
     'layout_topnav' => null,
     'layout_boxed' => null,
-    'layout_fixed_sidebar' => null,
-    'layout_fixed_navbar' => null,
+    'layout_fixed_sidebar' => true,
+    'layout_fixed_navbar' => true,
     'layout_fixed_footer' => null,
     'layout_dark_mode' => null,
 
@@ -283,8 +283,11 @@ return [
     */
 
     'laravel_asset_bundling' => false,
-    'laravel_css_path' => 'css/app.css',
-    'laravel_js_path' => 'js/app.js',
+    'laravel_css_path' => 'resources/sass/app.scss',
+    'laravel_js_path' => 'resources/js/app.js',
+
+    
+
 
     /*
     |--------------------------------------------------------------------------
@@ -325,16 +328,19 @@ return [
         ['header' => 'MENU TRABAJADOR'],
         [
             'text' => 'Recibos de Pago',
-            'url' => 'user.recibopago',
-            'icon' => 'fa fa-people-line',
+            'route' => 'user.recibo.index',
+            'icon' => 'fa fa-file-invoice',
             'can' => ['view-trabajador'],
         ],
-        ['header' => 'MENU ADMINISTRACIÓN'],
+        [
+            'header' => 'MENU ADMINISTRACIÓN',
+            'can' => ['create-trabajador', 'edit-trabajador', 'delete-trabajador', 'create-primeraquincena', 'edit-primeraquincena', 'delete-primeraquincena', 'view-primeraquincena', 'create-segundaquincena', 'edit-segundaquincena', 'delete-segundaquincena', 'view-segundaquincena'],
+        ],
         [
             'text' => 'Trabajadores',
             'url' => '/trabajadors',
             'icon' => 'fa fa-people-line',
-            'can' => ['create-trabajador', 'edit-trabajador', 'delete-trabajador', 'view-trabajador'],
+            'can' => ['create-trabajador', 'edit-trabajador', 'delete-trabajador'],
         ],
         [
             'text' => 'Primera Quincena',

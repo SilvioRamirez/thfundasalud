@@ -42,7 +42,7 @@ Route::group(['middleware' => ['auth']], function() {
 
     /* Rutas Recibo de Pago */
     Route::get('recibopago/{cedula}/{ano}/{mes}', [ReciboPagoController::class, 'recibo_pago_pdf'])->name('recibopago.pdf');
-    Route::get('users/recibos/{cedula}/', [UserReciboController::class, 'recibos'])->name('user.recibopago');
+    Route::get('users/recibos/index', [UserReciboController::class, 'index'])->name('user.recibo.index');
 
     /* Aquí se agrupan todos los controladores que queramos tener con resources */
     Route::resources([

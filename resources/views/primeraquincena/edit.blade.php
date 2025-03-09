@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', content: 'Primera Quincena')
+
 @section('content_header')
     <h1 class="text-center">Administración de Productos</h1>
 @stop

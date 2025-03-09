@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', content: 'Roles')
+
 @section('content')
 
 @section('content_header')

@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Log de Actividades')
+
 @section('content_header')
     <h1 class="text-center">Logs del Sistema</h1>
 @stop

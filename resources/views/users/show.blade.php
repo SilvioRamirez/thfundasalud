@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', content: 'Usuarios')
+
 @section('content_header')
     <h1 class="text-center">Administración de Usuarios</h1>
 @stop

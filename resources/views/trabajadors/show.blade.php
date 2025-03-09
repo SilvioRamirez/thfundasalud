@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Trabajadores')
+
 @section('content_header')
     <h1 class="text-center">Administración de Trabajador</h1>
 @stop
@@ -14,9 +16,11 @@
                 <div class="float-start">
                     Información de Trabajador
                 </div>
-                <div class="float-end">
-                    <a href="{{ route('trabajadors.index') }}" class="btn btn-light btn-sm">&larr; {{ __('actions.return') }}</a>
-                </div>
+                @unlessrole('user')
+                    <div class="float-end">
+                        <a href="{{ route('trabajadors.index') }}" class="btn btn-light btn-sm">&larr; {{ __('actions.return') }}</a>
+                    </div>
+                @endunlessrole
             </div>
             <div class="card-body">
 

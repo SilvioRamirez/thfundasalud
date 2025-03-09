@@ -62,6 +62,11 @@ class User extends Authenticatable
         ];
     }
 
+    public function adminlte_desc()
+    {
+        return $this->roles->pluck('name')->join(', ');
+    }
+
     public function getCreatedAtAttribute()
     {
         return \Carbon\Carbon::parse($this->attributes['created_at'])->format('Y-m-d h:m:s');

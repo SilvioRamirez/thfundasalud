@@ -26,9 +26,9 @@ class TrabajadorsDataTable extends DataTable
 
                     $buttons = '';
 
-                    if(auth()->user()->can('edit-trabajador')){
+                    /* if(auth()->user()->can('edit-trabajador')){
                         $buttons .= '<a class="btn btn-primary btn-sm" title="Editar Información" href="'.route('trabajadors.edit',$query->id).'"> <i class="fa fa-pen-to-square"></i></a>';
-                    }
+                    } */
 
                     if(auth()->user()->can('view-trabajador')){
                         $buttons .= '<a class="btn btn-info btn-sm" title="Ver Información del Trabajador" href="'.route('trabajadors.show',$query->id).'"> <i class="fa fa-eye"></i></a>';
@@ -86,7 +86,7 @@ class TrabajadorsDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::computed('action')
+            Column::computed('action')->title('ACCIONES')
                     ->exportable(false)
                     ->printable(false)
                     ->width(60)
@@ -104,8 +104,8 @@ class TrabajadorsDataTable extends DataTable
             Column::make('nomina')->title('NOMINA'),
             Column::make('mes')->title('MES'),
             Column::make('ano')->title('AÑO'),
-            Column::make('created_at')->title('Creado'),
-            Column::make('updated_at')->title('Actualizado'),
+            Column::make('created_at')->title('CREADO'),
+            Column::make('updated_at')->title('ACTUALIZADO'),
         ];
     }
 

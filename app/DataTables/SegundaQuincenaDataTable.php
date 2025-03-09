@@ -82,11 +82,11 @@ class SegundaQuincenaDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::computed('action')
+            /* Column::computed('action')
                     ->exportable(false)
                     ->printable(false)
                     ->width(60)
-                    ->addClass('text-center'),
+                    ->addClass('text-center'), */
             Column::make('id')->title('ID'),
             Column::make('nro')->title('NRO'),
             Column::make('cedula')->title('CEDULA'),

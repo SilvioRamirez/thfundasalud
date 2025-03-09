@@ -1,5 +1,7 @@
 @extends('layouts.appauth')
 
+@section('title', 'Login')
+
 @section('content')
 
         <div class="container mt-2">

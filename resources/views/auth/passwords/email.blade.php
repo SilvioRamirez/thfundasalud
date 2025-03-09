@@ -1,5 +1,7 @@
 @extends('layouts.appauth')
 
+@section('title', 'Correo')
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

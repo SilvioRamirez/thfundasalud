@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Trabajadores')
+
 @section('content_header')
     <h1 class="text-center">Administración de Trabajadores</h1>
 @stop

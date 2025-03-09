@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\TrabajadorsIndividualDataTable;
+use App\Models\Trabajador;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -10,56 +12,29 @@ class UserReciboController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(TrabajadorsIndividualDataTable $dataTable)
     {
-        //
+        $trabajador = Trabajador::where('cedula', auth()->user()->cedula)->first();
+
+        $trabajadorId = $trabajador->id;
+        
+        return $dataTable->with('trabajadorId', $trabajadorId)->render('trabajadors.show', compact('trabajador'));
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function show(Trabajador $trabajador, TrabajadorsIndividualDataTable $dataTable)
     {
-        //
+        /* return view('trabajadors.show', compact('trabajador')); */
+        /* return $dataTable->render('trabajadors.show', compact('trabajador')); */
+
+        /* return $trabajador; */
+
+        /* return $trabajador->with('primeraQuincena', 'segundaQuincena')->find($trabajador->id); *//* $users = User::with('podcasts')->get(); */
+
+        $trabajadorId = $trabajador->id;
+
+        return $dataTable->with('trabajadorId', $trabajadorId)->render('trabajadors.show', compact('trabajador'));
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(User $user)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(User $user)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, User $user)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(User $user)
-    {
-        //
-    }
 }
