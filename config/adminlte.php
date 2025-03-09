@@ -154,8 +154,8 @@ return [
 
     'layout_topnav' => null,
     'layout_boxed' => null,
-    'layout_fixed_sidebar' => true,
-    'layout_fixed_navbar' => true,
+    'layout_fixed_sidebar' => null,
+    'layout_fixed_navbar' => null,
     'layout_fixed_footer' => null,
     'layout_dark_mode' => null,
 
@@ -283,11 +283,8 @@ return [
     */
 
     'laravel_asset_bundling' => false,
-    'laravel_css_path' => 'resources/sass/app.scss',
-    'laravel_js_path' => 'resources/js/app.js',
-
-    
-
+    'laravel_css_path' => 'css/app.css',
+    'laravel_js_path' => 'js/app.js',
 
     /*
     |--------------------------------------------------------------------------

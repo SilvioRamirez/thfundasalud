@@ -279,4 +279,10 @@ return [
         'work'                     => 'trabajo',
         'year'                     => 'año',
     ],
+    'custom' => [
+        'g-recaptcha-response' => [
+            'required' => '¡Parece que eres un robot!',
+            'captcha' => 'Captcha error! intente de nuevo o contactese con el administrador.',
+        ],
+    ],
 ];
