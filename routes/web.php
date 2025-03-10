@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ActivityLogController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\TrabajadorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -15,10 +17,19 @@ use App\Http\Controllers\ReciboPagoController;
 use App\Http\Controllers\SegundaQuincenaExcelController;
 use App\Http\Controllers\UserReciboController;
 
-Auth::routes();
+
+
+// Login and Logout Routes...
+Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('login', [LoginController::class,'login']);
+Route::post('logout',  [LoginController::class,'logout'])->name('logout');
+
+// Registration Routes...
+Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('register', [RegisterController::class, 'register']);
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::get('recibopago/verify/{id}/{cedula}/{ano}/{mes}', [ReciboPagoController::class, 'recibo_pago_verify'])->name('recibopago.verify');

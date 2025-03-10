@@ -7,7 +7,7 @@ import '@fortawesome/fontawesome-free/js/all';
 import 'laravel-datatables-vite';
 
 
-/* import.meta.glob([
+import.meta.glob([
     '../images/**',
     '../fonts/**',
-]); */
+]);
