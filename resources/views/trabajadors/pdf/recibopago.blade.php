@@ -20,14 +20,7 @@
             top: -2.6cm;
             left: 0.5cm;
         }
-
-        #img-qrcode{
-            position: fixed;
-            left: 0.25cm;
-            top: 22.6cm;
-            /* border: 0.5px solid red; */
-        }
-
+        
         .imgHeader{
             float: left;
             width: 6cm;
@@ -220,8 +213,9 @@
             border-collapse: collapse;
         }
         #table-5{
-            position: fixed;
-            top: 21.74cm;
+            position: absolute;
+            /* top: 21.74cm; */
+            margin-top: -0.68cm;
             left: 3.1cm;
         }
 
@@ -232,9 +226,17 @@
             border-collapse: collapse;
         }
         #table-6{
-            position: fixed;
-            top: 21.74cm;
-            left: 11.7cm;
+            position: absolute;
+            margin-top: -0.68cm;
+            left: 11.7cm; 
+        }
+
+        #img-qrcode{
+            position: absolute;
+            left: 0.25cm;
+            margin-top: 0.5cm;
+            /* top: 22.6cm; */
+            /* border: 0.5px solid red; */
         }
 
         hr{
@@ -318,40 +320,40 @@
                     {{-- <td class="">{{$trabajador->cedula}}</td> --}}
                 </tr>
                 <tr>
-                    <td class="text-center border"><strong><br>Mes:</strong> <br> {{$mesrecibo}}<br>&nbsp;</td>
+                    <td class="text-center border"><strong><br>Mes:</strong> <br> {{$mesrecibo}}&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="text-center border"><strong><br>Año:</strong> <br> {{ $trabajador->primeraQuincena[0]->ano}}<br>&nbsp;</td>
+                    <td class="text-center border"><strong><br>Año:</strong> <br> {{ $trabajador->primeraQuincena[0]->ano}}&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="text-center border"><strong><br>Personal:</strong> <br> {{$trabajador->nomina}}<br>&nbsp;</td>
+                    <td class="text-center border"><strong><br>Personal:</strong> <br> {{$trabajador->nomina}}&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="text-center border"><strong><br>Banco:</strong> <br> {{'VENEZUELA'}}<br>&nbsp;</td>
+                    <td class="text-center border"><strong><br>Banco:</strong> <br> {{'VENEZUELA'}}&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="text-center border"><strong><br>Cuenta:</strong> <br> {{$trabajador->cuenta}}<br>&nbsp;</td>
+                    <td class="text-center border"><strong><br>Cuenta:</strong> <br> {{$trabajador->cuenta}}&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="text-center border"><strong><br>Fecha de Ingreso Funda:</strong> <br> {{$trabajador->fecha_ingreso}}<br>&nbsp;</td>
+                    <td class="text-center border"><strong><br>Fecha de Ingreso Funda:</strong> <br> {{$trabajador->fecha_ingreso}}&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="text-center border"><strong><br>Tiempo de Servicio APN:</strong> <br> {{$trabajador->anos_anteriores}} AÑOS<br>&nbsp;</td>
+                    <td class="text-center border"><strong><br>Tiempo de Servicio APN:</strong> <br> {{$trabajador->anos_anteriores}} AÑOS&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="text-center border"><strong><br>Dependencia:</strong> <br> {{$trabajador->dependencia}}<br>&nbsp;</td>
+                    <td class="text-center border"><strong><br>Dependencia:</strong> <br> {{$trabajador->dependencia}}&nbsp;</td>
                 </tr>
                 <tr>
                     <td class="text-center border" style="background-color: #C0C0C0;"><strong><br>PRIMERA QUINCENA</strong> <br></td>
                 </tr>
                 <tr>
-                    <td class="text-center border"><strong><br>TOTAL ASIGNACIONES</strong> <br> {{ formatear_moneda($trabajador->primeraQuincena[0]->total_asignaciones)}}<br></td>
+                    <td class="text-center border"><strong><br>TOTAL ASIGNACIONES</strong> <br> {{ formatear_moneda($trabajador->primeraQuincena[0]->total_asignaciones)}}&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="text-center border"><strong><br>TOTAL DEDUCCIONES</strong> <br> {{ formatear_moneda($trabajador->primeraQuincena[0]->total_deduciones)}}<br></td>
+                    <td class="text-center border"><strong><br>TOTAL DEDUCCIONES</strong> <br> {{ formatear_moneda($trabajador->primeraQuincena[0]->total_deduciones)}}&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="text-center border" style="background-color: #C0C0C0;"><strong><br>TOTAL PAGADO</strong><br>{{ formatear_moneda($trabajador->primeraQuincena[0]->total)}}<br></td>
+                    <td class="text-center border" style="background-color: #C0C0C0;"><strong><br>TOTAL PAGADO</strong><br>{{ formatear_moneda($trabajador->primeraQuincena[0]->total)}}&nbsp;</td>
                 </tr>
                 <tr>
                     <td class=""><img class="imgTable-2" src="{{public_path('storage/img/batalla_carabobo.png')}}"></td>
@@ -360,13 +362,13 @@
                     <td class="text-center border" style="background-color: #C0C0C0;"><strong><br>SEGUNDA QUINCENA</strong> <br></td>
                 </tr>
                 <tr>
-                    <td class="text-center border"><strong><br>TOTAL ASIGNACIONES</strong> <br> {{ formatear_moneda($trabajador->segundaQuincena[0]->total_asignaciones) }}<br></td>
+                    <td class="text-center border"><strong><br>TOTAL ASIGNACIONES</strong> <br> {{ formatear_moneda($trabajador->segundaQuincena[0]->total_asignaciones) }}</td>
                 </tr>
                 <tr>
-                    <td class="text-center border"><strong><br>TOTAL DEDUCCIONES</strong> <br> {{ formatear_moneda($trabajador->segundaQuincena[0]->total_deduciones) }}<br></td>
+                    <td class="text-center border"><strong><br>TOTAL DEDUCCIONES</strong> <br> {{ formatear_moneda($trabajador->segundaQuincena[0]->total_deduciones) }}</td>
                 </tr>
                 <tr>
-                    <td class="text-center border" style="background-color: #C0C0C0;"><strong><br>TOTAL PAGADO</strong><br>{{ formatear_moneda($trabajador->segundaQuincena[0]->total) }}<br></td>
+                    <td class="text-center border" style="background-color: #C0C0C0;"><strong><br>TOTAL PAGADO</strong><br>{{ formatear_moneda($trabajador->segundaQuincena[0]->total) }}</td>
                 </tr>
                 <tr>
                     <td class="text-center border" style="font-size: 8px;">Información: Este Recibo NO ES VÁLIDO para realizar trámites legales sin el sello y la firma de la Dirección de Talento Humano de la FUNDACION TRUJILLANA DE LA SALUD</td>

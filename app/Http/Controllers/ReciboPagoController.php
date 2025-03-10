@@ -39,7 +39,7 @@ class ReciboPagoController extends Controller
         $pdf = PDF::loadView('trabajadors.pdf.recibopago', compact('trabajador', 'fecha', 'ruta'))
                     ->setPaper('A4','portrait');
 
-        /* return  $pdf->stream(); */
+        return  $pdf->stream();
                     
         return $pdf->download('Recibo de Pago '.$trabajador->cedula.'_'.$trabajador->primeraQuincena[0]->ano.'_'.$trabajador->primeraQuincena[0]->mes.'.pdf');
     }

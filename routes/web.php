@@ -16,8 +16,8 @@ use App\Http\Controllers\PrimeraQuincenaExcelController;
 use App\Http\Controllers\ReciboPagoController;
 use App\Http\Controllers\SegundaQuincenaExcelController;
 use App\Http\Controllers\UserReciboController;
-
-
+use App\Mail\ContactanosMailable;
+use Illuminate\Support\Facades\Mail;
 
 // Login and Logout Routes...
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
@@ -31,6 +31,13 @@ Route::post('register', [RegisterController::class, 'register']);
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('contactanos', function (){
+    Mail::to('silvio.ramirez.m@gmail.com')->send(new ContactanosMailable());
+
+    return 'Mensaje enviado';
+    
+})->name('contactanos');
 
 Route::get('recibopago/verify/{id}/{cedula}/{ano}/{mes}', [ReciboPagoController::class, 'recibo_pago_verify'])->name('recibopago.verify');
 
