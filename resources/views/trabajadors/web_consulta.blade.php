@@ -61,6 +61,8 @@ h2{
 
                                         <div class="alert alert-dismissible alert-info" bis_skin_checked="1">
                                             <p class="text-justify">El recibo de pago de <strong>{{$trabajadorCedula->nombre}}</strong> para el Mes de <strong>{{$mesrecibo}}</strong> del Año <strong>{{$primeraQuincena->ano}}</strong> es legítimo. <i class="fa fa-check"></i></p>
+                                            <strong>Cedula: </strong>{{$trabajadorCedula->cedula}}
+                                            <br>
                                             <strong>Fecha de Ingreso: </strong>{{$trabajadorCedula->fecha_ingreso}}
                                             <br>
                                             <strong>Cargo: </strong>{{$trabajadorCedula->cargo}}

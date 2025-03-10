@@ -102,12 +102,12 @@
                                 </button>
                             </div>
                         </div>
-                        <input type="text" name="g-recaptcha-response" id="g-recaptcha-response">
+                        {{-- <input type="text" name="g-recaptcha-response" id="g-recaptcha-response">
                         @if ($errors->has('g-recaptcha-response'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
                             </span>
-                        @endif
+                        @endif --}}
                     </form>
                 </div>
             </div>
@@ -119,20 +119,20 @@
 
 @push('scripts')
 
-    <script src="https://www.google.com/recaptcha/api.js?render={{ env('NOCAPTCHA_SITEKEY') }}"></script>
+    {{-- <script src="https://www.google.com/recaptcha/api.js?render={{ env('NOCAPTCHA_SITEKEY') }}"></script>
 
     <script>
         document.addEventListener('submit', function(e)) {
             e.preventDefault();
             grecaptcha.ready(function() {
-            grecaptcha.execute('6LfkYu8qAAAAAA2GfNyu1H9tSZTuPXNxiGdFOWuw', {action: 'submit'}).then(function(token) {
-                document.getElementById('g-recaptcha-response').value = token;
-                let form = e.target();
-                form.submit();
-            });
+                grecaptcha.execute('{{ env('NOCAPTCHA_SITEKEY') }}', {action: 'submit'}).then(function(token) {
+                    document.getElementById('g-recaptcha-response').value = token;
+                    let form = e.target();
+                    form.submit();
+                });
             });
         }
-    </script>
+    </script> --}}
 
     <script type="module">
 

@@ -65,7 +65,7 @@ class RegisterController extends Controller
                         }
                     },
                 ],
-                'g-recaptcha-response' => 'required|captcha', /* Se agrega para el captcha */
+            /* 'g-recaptcha-response' => 'required|captcha', */ /* Se agrega para el captcha */
             'telefono' => ['required'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);

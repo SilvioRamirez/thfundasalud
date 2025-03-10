@@ -14,7 +14,7 @@
     <div class="card-header bg-primary">
         @can('create-product')
             <div class="float-start">
-                <a href="{{ route('products.create') }}" class="btn btn-light btn-sm"><i class="fa fa-plus"></i> {{ __('Agregar Nuevo Trabajador') }}</a>
+                {{-- <a href="{{ route('products.create') }}" class="btn btn-light btn-sm"><i class="fa fa-plus"></i> {{ __('Agregar Nuevo Trabajador') }}</a> --}}
                 <button type="button" class="btn btn-light btn-sm" title="Carga Masiva de Trabajadores" onclick="openModalCargaMasivaTrabajadors()"><i class="fa fa-file-import"></i> Carga Masiva de Trabajadores</button>
 
             </div>

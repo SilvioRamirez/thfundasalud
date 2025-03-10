@@ -20,7 +20,7 @@ class UserReciboController extends Controller
             abort(403, 'EL USUARIO NO PUEDE REALIZAR ESTA ACCIÓN');
         }
 
-        if ($trabajador->numero_cuenta == 0) {
+        if ($trabajador->cuenta == 0) {
             abort(403, 'HA OCURRIDO UN ERROR AL INTENTAR PROCESAR LA INFORMACIÓN, POR FAVOR CONSULTAR EN SU COORDINACIÓN DE ADMINISTRACIÓN DE TALENTO HUMANO');
         }
 
