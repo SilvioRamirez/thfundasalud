@@ -16,7 +16,6 @@ class ReciboPagoController extends Controller
      */
     public function recibo_pago_pdf(string $cedula, string $ano, string $mes)
     {
-
         // Buscar el trabajador por cédula
         $trabajador = Trabajador::where('cedula', $cedula)->first();
 

@@ -38,17 +38,17 @@ class Trabajador extends Model
 
     public function getCreatedAtAttribute()
     {
-        return \Carbon\Carbon::parse($this->attributes['created_at'])->format('Y-m-d h:m:s');
+        return Carbon::parse($this->attributes['created_at'])->format('Y-m-d h:m:s');
     }
 
     public function getUpdatedAtAttribute()
     {
-        return \Carbon\Carbon::parse($this->attributes['updated_at'])->format('Y-m-d h:m:s');
+        return Carbon::parse($this->attributes['updated_at'])->format('Y-m-d h:m:s');
     }
 
     public function getFechaIngresoAttribute()
     {
-        return \Carbon\Carbon::parse($this->attributes['fecha_ingreso'])->format('d/m/Y');
+        return Carbon::parse($this->attributes['fecha_ingreso'])->format('d/m/Y');
     }
 
     public function getAnosApnAttribute()

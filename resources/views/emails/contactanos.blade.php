@@ -10,9 +10,9 @@
 
 <body>
     <div style="max-width: 600px; margin: 0 auto; padding: 20px; font-family: Arial, sans-serif;">
-        {{-- <div style="text-align: center; margin-bottom: 30px;">
+        <div style="text-align: center; margin-bottom: 30px;">
             <img src="{{ asset('storage/img/fundasalud.png') }}" alt="Logo Fundasalud" style="max-width: 200px;">
-        </div> --}}
+        </div>
 
         <h1 style="color: #333; text-align: center;">Mensaje de Contacto</h1>
 
