@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
@@ -48,5 +49,12 @@ class Trabajador extends Model
     public function getFechaIngresoAttribute()
     {
         return \Carbon\Carbon::parse($this->attributes['fecha_ingreso'])->format('d/m/Y');
+    }
+
+    public function getAnosApnAttribute()
+    {
+        /* return \Carbon\Carbon::parse($this->attributes['anos_anteriores'])->format('d/m/Y'); */
+
+        return Carbon::createFromFormat('d/m/Y', $this->fecha_ingreso)->age + $this->anos_anteriores;
     }
 }

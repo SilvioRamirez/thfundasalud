@@ -338,7 +338,7 @@
                     <td class="text-center border"><strong><br>Fecha de Ingreso Funda:</strong> <br> {{$trabajador->fecha_ingreso}}&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="text-center border"><strong><br>Tiempo de Servicio APN:</strong> <br> {{$trabajador->anos_anteriores}} AÑOS&nbsp;</td>
+                    <td class="text-center border"><strong><br>Tiempo de Servicio APN:</strong> <br> {{$trabajador->anos_apn}} AÑOS&nbsp;</td>
                 </tr>
                 <tr>
                     <td class="text-center border"><strong><br>Dependencia:</strong> <br> {{$trabajador->dependencia}}&nbsp;</td>
