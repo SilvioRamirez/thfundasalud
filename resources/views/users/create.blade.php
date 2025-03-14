@@ -41,6 +41,55 @@
                     </div>
 
                     <div class="mb-3 row">
+                        <label for="cedula" class="col-md-4 col-form-label text-md-end text-start">{{ __( 'Cedula') }}</label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control @error('cedula') is-invalid @enderror" id="cedula" name="cedula">
+                            @error('cedula')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="telefono" class="col-md-4 col-form-label text-md-end text-start">{{ __( 'Teléfono') }}</label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control @error('telefono') is-invalid @enderror" id="telefono" name="telefono">
+                            @error('telefono')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="ubicacion_fisica" class="col-md-4 col-form-label text-md-end text-start">Ubicación Física</label>
+                        <div class="col-md-6">           
+                            {{-- <select class="form-select @error('ubicacion_fisica') is-invalid @enderror" aria-label="Ubicación Física" id="ubicacion_fisica" name="ubicacion_fisica">
+                                @forelse ($ubicacion_fisicas as $ubicacion_fisica)
+
+                                        <option value="{{ $ubicacion_fisica }}" {{ $ubicacion_fisica == old('ubicacion_fisica') ? 'selected' : '' }}>
+                                            {{ $ubicacion_fisica }}
+                                        </option>
+                                @empty
+                                @endforelse
+                            </select> --}}
+                            <select name="ubicacion_fisica_id" id="ubicacion_fisica_id" class="form-select @error('ubicacion_fisica_id') is-invalid @enderror" aria-label="Ubicación Física" required>
+                                <option value="">--- Seleccione  ---</option>
+                                @foreach($ubicacion_fisicas as $id => $ubicacion_fisica)
+                                
+                                    <option value="{{ $id }}" {{ $id == old('ubicacion_fisica_id') ? 'selected' : '' }}>
+                                        {{ $ubicacion_fisica }}
+                                    </option>
+
+                                @endforeach
+                            </select>
+
+                            @error('ubicacion_fisica_id')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
                         <label for="password" class="col-md-4 col-form-label text-md-end text-start">{{ __('Password') }}</label>
                         <div class="col-md-6">
                             <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password">
@@ -84,6 +133,7 @@
                             @enderror
                         </div>
                     </div>
+
                     
                     <div class="mb-3 row">
                         <input type="submit" class="col-md-3 offset-md-5 btn btn-primary" value="Agregar Usuario">

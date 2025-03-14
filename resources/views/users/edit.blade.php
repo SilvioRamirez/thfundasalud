@@ -25,7 +25,7 @@
                     <div class="mb-3 row">
                         <label for="name" class="col-md-4 col-form-label text-md-end text-start">{{ __( 'Name') }}</label>
                         <div class="col-md-6">
-                          <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ $user->name }}">
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ $user->name }}">
                             @error('name')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -35,8 +35,47 @@
                     <div class="mb-3 row">
                         <label for="email" class="col-md-4 col-form-label text-md-end text-start">{{ __('Email Address') }}</label>
                         <div class="col-md-6">
-                          <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ $user->email }}">
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ $user->email }}">
                             @error('email')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="cedula" class="col-md-4 col-form-label text-md-end text-start">{{ __( 'Cedula') }}</label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control @error('cedula') is-invalid @enderror" id="cedula" name="cedula" value="{{ $user->cedula }}">
+                            @error('cedula')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="telefono" class="col-md-4 col-form-label text-md-end text-start">{{ __( 'Teléfono') }}</label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control @error('telefono') is-invalid @enderror" id="telefono" name="telefono" value="{{ $user->telefono }}">
+                            @error('telefono')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="ubicacion_fisica" class="col-md-4 col-form-label text-md-end text-start">Ubicación Física</label>
+                        <div class="col-md-6">           
+                            <select class="form-select @error('ubicacion_fisica') is-invalid @enderror" aria-label="Ubicación Física" id="ubicacion_fisica" name="ubicacion_fisica">
+                                @forelse ($ubicacion_fisicas as $ubicacion_fisica)
+
+                                        <option value="{{ $ubicacion_fisica }}" {{ $user->ubicacion_fisica->ubicacion_fisica == $ubicacion_fisica ? 'selected' : '' }}>
+                                            {{ $ubicacion_fisica }}
+                                        </option>
+                                @empty
+                                @endforelse
+                            </select>
+                            
+                            @error('ubicacion_fisica')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>

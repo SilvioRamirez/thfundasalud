@@ -368,6 +368,12 @@ return [
                     'can' => ['create-role', 'edit-role', 'delete-role'],
                 ],
                 [
+                    'text' => 'Ubicaciones Físicas',
+                    'url' => '/ubicacion_fisicas',
+                    'icon' => 'fa fa-map-marker-alt',
+                    'can' => ['create-ubicacion-fisica', 'edit-ubicacion-fisica', 'delete-ubicacion-fisica'],
+                ],
+                [
                     'text' => 'Log de Actividad',
                     'url' => '/activitylog',
                     'icon' => 'fa fa-book',

@@ -16,6 +16,7 @@ use App\Http\Controllers\PrimeraQuincenaExcelController;
 use App\Http\Controllers\ReciboPagoController;
 use App\Http\Controllers\SegundaQuincenaExcelController;
 use App\Http\Controllers\UserReciboController;
+use App\Http\Controllers\UbicacionFisicaController;
 use App\Mail\ContactanosMailable;
 use Illuminate\Support\Facades\Mail;
 
@@ -52,7 +53,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('api/userDelete/{user}',        [UserController::class, 'destroy']);
     Route::post('api/roleDelete/{role}',        [RoleController::class, 'destroy']);
     Route::post('api/productDelete/{product}',  [ProductController::class, 'destroy']);
-
+    Route::post('api/ubicacion_fisicaDelete/{ubicacion_fisica}',  [UbicacionFisicaController::class, 'destroy']);
     /* Rutas para importar y exportar excel */
     Route::post('trabajadors-import', [TrabajadorExcelController::class, 'import'])->name('trabajadors.import');
     Route::post('primeraquincena-import', [PrimeraQuincenaExcelController::class, 'import'])->name('primeraquincena.import');
@@ -70,6 +71,7 @@ Route::group(['middleware' => ['auth']], function() {
         'trabajadors'       => TrabajadorController::class,
         'primeraquincena'   => PrimeraQuincenaController::class,
         'segundaquincena'   => SegundaQuincenaController::class,
+        'ubicacion_fisicas' => UbicacionFisicaController::class,
     ]);
 
 });

@@ -22,6 +22,46 @@ class TrabajadorsIndividualDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
+            ->addColumn('ano', function ($trabajador) {
+                //return $trabajador->primeraQuincena->pluck('mes')->implode(', ');
+
+                $str='';
+                foreach($trabajador->primeraQuincena as $primeraQuincena){
+                    foreach($trabajador->segundaQuincena as $segundaQuincena){
+
+                        if($primeraQuincena->ano == $segundaQuincena->ano && $primeraQuincena->mes == $segundaQuincena->mes){
+                            /* $primeraQuincena->mes = null; */
+                            $str .=
+                            '<a class="btn btn-link" title="Ver Recibo" href="'.route('recibopago.pdf', [$trabajador->cedula, $primeraQuincena->ano, $primeraQuincena->mes]).'"> '.$primeraQuincena->ano.'</a>'.
+                            '<br>'
+                            ;
+                        }
+
+                    }
+                }
+                return $str;
+
+            })
+            ->addColumn('mes', function ($trabajador) {
+                //return $trabajador->primeraQuincena->pluck('mes')->implode(', ');
+
+                $str='';
+                foreach($trabajador->primeraQuincena as $primeraQuincena){
+                    foreach($trabajador->segundaQuincena as $segundaQuincena){
+
+                        if($primeraQuincena->ano == $segundaQuincena->ano && $primeraQuincena->mes == $segundaQuincena->mes){
+                            /* $primeraQuincena->mes = null; */
+                            $str .=
+                            '<a class="btn btn-link" title="Ver Recibo" href="'.route('recibopago.pdf', [$trabajador->cedula, $primeraQuincena->ano, $primeraQuincena->mes]).'"> '.$primeraQuincena->mes.'</a>'.
+                            '<br>'
+                            ;
+                        }
+
+                    }
+                }
+                return $str;
+
+            })
             ->addColumn('primera_quincena', function ($trabajador) {
                 //return $trabajador->primeraQuincena->pluck('mes')->implode(', ');
 
@@ -32,7 +72,7 @@ class TrabajadorsIndividualDataTable extends DataTable
                         if($primeraQuincena->ano == $segundaQuincena->ano && $primeraQuincena->mes == $segundaQuincena->mes){
                             /* $primeraQuincena->mes = null; */
                             $str .=
-                            '<a class="btn btn-link" title="Ver Recibo" href="'.route('recibopago.pdf', [$trabajador->cedula, $primeraQuincena->ano, $primeraQuincena->mes]).'"> '.$primeraQuincena->ano.'-'.$primeraQuincena->mes.'</a>'.
+                            '<a class="btn btn-success btn-sm" title="Descargar Recibo" href="'.route('recibopago.pdf', [$trabajador->cedula, $primeraQuincena->ano, $primeraQuincena->mes]).'"> '.'<i class="fa fa-download"></i>'.'</a>'.
                             '<br>'
                             ;
                         }
@@ -42,19 +82,7 @@ class TrabajadorsIndividualDataTable extends DataTable
                 return $str;
 
             })
-            /* ->addColumn('segunda_quincena', function ($trabajador) {
-                //return $trabajador->segundaQuincena->pluck('mes')->implode(', ');
-
-                $str='';
-                foreach($trabajador->segundaQuincena as $quincena){
-                    $str .=
-                    '<a class="btn btn-link" title="Ver Recibo" href="'.route('trabajadors.show', $trabajador->id).'"> '.$quincena->ano.'-'.$quincena->mes.'</a>'.
-                    '<br>'
-                    ;
-                }
-                return $str;
-            }) */
-            ->rawColumns(['primera_quincena', 'segunda_quincena'])
+            ->rawColumns(['ano', 'mes', 'primera_quincena'])
             ->setRowId('id');
     }
 
@@ -116,8 +144,9 @@ class TrabajadorsIndividualDataTable extends DataTable
                     ->addClass('text-center'), */
             /* Column::make('id'), */
             Column::make('nombre'),
-            Column::make('primera_quincena')->title('Año - Mes'),
-            /* Column::make('segunda_quincena'), */
+            Column::make('ano')->title('Año'),
+            Column::make('mes')->title('Mes'),
+            Column::make('primera_quincena')->title('Descargar'),
             /* Column::make('created_at')->title('Creado'),
             Column::make('updated_at')->title('Actualizado'), */
         ];

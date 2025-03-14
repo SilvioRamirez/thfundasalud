@@ -18,6 +18,8 @@ class DefaultUserSeeder extends Seeder
         $superAdmin = User::create([
             'name' => 'Silvio Ramírez', 
             'email' => 'silvio.ramirez.m@gmail.com',
+            'cedula' => '20428781',
+            'telefono' => '0412-6713413',
             'password' => Hash::make('secret')
         ]);
         $superAdmin->assignRole('Super Admin');

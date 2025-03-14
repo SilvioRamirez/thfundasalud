@@ -41,7 +41,11 @@ class PermissionSeeder extends Seeder
             'view-segundaquincena',
             'create-segundaquincena',
             'edit-segundaquincena',
-            'delete-segundaquincena'
+            'delete-segundaquincena',
+            'view-ubicacion_fisica',
+            'create-ubicacion_fisica',
+            'edit-ubicacion_fisica',
+            'delete-ubicacion_fisica'
         ];
 
         // Looping and Inserting Array's Permissions into Permission Table

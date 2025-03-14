@@ -11,6 +11,7 @@ use Illuminate\Http\RedirectResponse;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use App\DataTables\UsersDataTable;
+use App\Models\UbicacionFisica;
 
 class UserController extends Controller
 {
@@ -40,8 +41,10 @@ class UserController extends Controller
      */
     public function create(): View
     {
+        
         return view('users.create', [
-            'roles' => Role::pluck('name')->all()
+            'roles' => Role::pluck('name')->all(),
+            'ubicacion_fisicas' => UbicacionFisica::pluck('ubicacion_fisica', 'id')->all()
         ]);
     }
 
@@ -63,12 +66,15 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User $user): View
+    public function show(User $user)
     {
+        return User::all();
+        dd($user->ubicacionFisicaName());
         return view('users.show', [
             'user' => $user,
             'roles' => Role::pluck('name')->all(),
-            'userRoles' => $user->roles->pluck('name')->all()
+            'userRoles' => $user->roles->pluck('name')->all(),
+            'ubicacion_fisicas' => UbicacionFisica::pluck('ubicacion_fisica')->all()
         ]);
     }
 
@@ -87,7 +93,8 @@ class UserController extends Controller
         return view('users.edit', [
             'user' => $user,
             'roles' => Role::pluck('name')->all(),
-            'userRoles' => $user->roles->pluck('name')->all()
+            'userRoles' => $user->roles->pluck('name')->all(),
+            'ubicacion_fisicas' => UbicacionFisica::pluck('ubicacion_fisica')->all()
         ]);
     }
 
@@ -96,7 +103,7 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user): RedirectResponse
     {
-        $input = $request->all();
+        dd($input = $request->all());
 
         if(!empty($request->password)){
             $input['password'] = Hash::make($request->password);
@@ -120,7 +127,9 @@ class UserController extends Controller
         // About if user is Super Admin or User ID belongs to Auth User
         if ($user->hasRole('Super Admin') || $user->id == auth()->user()->id)
         {
-            abort(403, 'EL USUARIO NO TIENE LOS PERMISOS SUFICIENTES PARA REALIZAR ESTA ACCIÓN');
+            return response()->json([
+            'message' => 'El usuario no tiene permisos suficientes para realizar esta acción.'
+        ]);
         }
 
         $user->syncRoles([]);

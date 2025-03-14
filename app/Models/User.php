@@ -36,6 +36,7 @@ class User extends Authenticatable
         'email',
         'cedula',
         'telefono',
+        'ubicacion_fisica_id',
         'password',
     ];
 
@@ -76,4 +77,18 @@ class User extends Authenticatable
     {
         return \Carbon\Carbon::parse($this->attributes['updated_at'])->format('Y-m-d h:m:s');
     }
+
+    public function ubicacionFisica()
+    {
+        return $this->belongsTo(UbicacionFisica::class);
+    }
+
+    // Accessor para obtener el nombre de la ubicación física
+    public function getUbicacionFisicaNameAttribute()
+    {
+        return $this->ubicacionFisica ? $this->ubicacionFisica->ubicacion_fisica : null;
+    }
+
+    // Agregar el accessor a las respuestas JSON
+    protected $appends = ['ubicacion_fisica_name'];
 }
