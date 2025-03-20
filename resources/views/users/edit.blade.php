@@ -65,17 +65,18 @@
                     <div class="mb-3 row">
                         <label for="ubicacion_fisica" class="col-md-4 col-form-label text-md-end text-start">Ubicación Física</label>
                         <div class="col-md-6">           
-                            <select class="form-select @error('ubicacion_fisica') is-invalid @enderror" aria-label="Ubicación Física" id="ubicacion_fisica" name="ubicacion_fisica">
+                            <select class="form-select @error('ubicacion_fisica_id') is-invalid @enderror" aria-label="Ubicación Física" id="ubicacion_fisica_id" name="ubicacion_fisica_id">
+                                <option value="">Seleccione una ubicación</option>
                                 @forelse ($ubicacion_fisicas as $ubicacion_fisica)
-
-                                        <option value="{{ $ubicacion_fisica }}" {{ $user->ubicacion_fisica->ubicacion_fisica == $ubicacion_fisica ? 'selected' : '' }}>
-                                            {{ $ubicacion_fisica }}
-                                        </option>
+                                    <option value="{{ $ubicacion_fisica->id }}" {{ $user->ubicacion_fisica_id == $ubicacion_fisica->id ? 'selected' : '' }}>
+                                        {{ $ubicacion_fisica->ubicacion_fisica }}
+                                    </option>
                                 @empty
+                                    <option value="">No hay ubicaciones disponibles</option>
                                 @endforelse
                             </select>
                             
-                            @error('ubicacion_fisica')
+                            @error('ubicacion_fisica_id')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
@@ -84,7 +85,7 @@
                     <div class="mb-3 row">
                         <label for="password" class="col-md-4 col-form-label text-md-end text-start">{{ __('Password') }}</label>
                         <div class="col-md-6">
-                          <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password">
+                            <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password">
                             @error('password')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror

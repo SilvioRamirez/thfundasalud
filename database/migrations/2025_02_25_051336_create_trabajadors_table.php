@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('dependencia')->nullable();
             $table->string('fecha_ingreso')->nullable();
             $table->string('anos_anteriores')->nullable();
+            $table->string('banco')->nullable();
             $table->string('cuenta')->nullable();
             $table->string('nomina')->nullable();
             $table->string('mes')->nullable();

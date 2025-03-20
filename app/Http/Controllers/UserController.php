@@ -68,8 +68,8 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return User::all();
-        dd($user->ubicacionFisicaName());
+        /* return User::all();
+        dd($user->ubicacionFisicaName()); */
         return view('users.show', [
             'user' => $user,
             'roles' => Role::pluck('name')->all(),
@@ -81,7 +81,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $user): View
+    public function edit(User $user)
     {
         // Check Only Super Admin can update his own Profile
         if ($user->hasRole('Super Admin')){
@@ -89,12 +89,12 @@ class UserController extends Controller
                 abort(403, 'EL USUARIO NO TIENE PERMISOS SUFICIENTES PARA REALIZAR ESTA ACCIÓN');
             }
         }
-
+        
         return view('users.edit', [
             'user' => $user,
             'roles' => Role::pluck('name')->all(),
             'userRoles' => $user->roles->pluck('name')->all(),
-            'ubicacion_fisicas' => UbicacionFisica::pluck('ubicacion_fisica')->all()
+            'ubicacion_fisicas' => UbicacionFisica::select('id', 'ubicacion_fisica')->get()
         ]);
     }
 
@@ -103,7 +103,6 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user): RedirectResponse
     {
-        dd($input = $request->all());
 
         if(!empty($request->password)){
             $input['password'] = Hash::make($request->password);
@@ -128,18 +127,34 @@ class UserController extends Controller
         if ($user->hasRole('Super Admin') || $user->id == auth()->user()->id)
         {
             return response()->json([
-            'message' => 'El usuario no tiene permisos suficientes para realizar esta acción.'
-        ]);
+                'success' => false,
+                'message' => 'No se puede eliminar este usuario.',
+                'details' => 'No tiene permisos suficientes para eliminar un Super Admin o tu propio usuario.',
+                'code' => 'FORBIDDEN'
+            ], 403);
         }
 
-        $user->syncRoles([]);
-        $user->delete();
-        return response()->json([
-            'message' => 'Usuario Eliminado'
-        ]);
-
-        /* return redirect()->route('users.index')
-                ->withSuccess('Usuario eliminado exitosamente.'); */
+        try {
+            $user->syncRoles([]);
+            $user->delete();
+            
+            return response()->json([
+                'success' => true,
+                'message' => 'Usuario eliminado exitosamente.',
+                'data' => [
+                    'id' => $user->id,
+                    'name' => $user->name,
+                    'email' => $user->email
+                ]
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error al eliminar el usuario.',
+                'details' => $e->getMessage(),
+                'code' => 'ERROR'
+            ], 500);
+        }
     }
 
 }

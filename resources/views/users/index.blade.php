@@ -47,28 +47,33 @@ function openModalDelete(id){
         cancelButtonColor: "#d33",
         confirmButtonText: "Si, eliminar",
         cancelButtonText: "Cancelar"
-        }).then((result) => {
+    }).then((result) => {
         if (result.isConfirmed) {
             var urlDelete = 'api/userDelete/'+`${id}`;
             axios.post(urlDelete).then(response => {
                 let status = response.status;
-                let message = response.statusText;
+                let message = response.data.message; // Obtenemos el mensaje de la respuesta
                 console.log(response.data);
 
                 var tabla = $('#users-table').DataTable();
                 tabla.ajax.reload();
 
+                Swal.fire({
+                    title: "¡Eliminado!",
+                    text: message, // Usamos el mensaje de la respuesta
+                    icon: "success"
+                });
             }).catch(error => {                  
                 if(error.response){
-                    console.log(error.response.data.errors)
+                    console.log(error.response.data.errors);
+                    Swal.fire({
+                        title: "Error",
+                        text: error.response.data.message || "Ha ocurrido un error al eliminar el usuario",
+                        html: error.response.data.details,
+                        icon: "error"
+                    });
                 }
             });
-            Swal.fire({
-                title: "¡Eliminado!",
-                text: "El usuario ha sido eliminado.",
-                icon: "success"
-            });
-            
         }
     });
 }

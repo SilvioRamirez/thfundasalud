@@ -48,6 +48,7 @@ class TrabajadorsImport implements ToModel, WithHeadingRow, WithChunkReading, Wi
             'dependencia'       => $row['ubicacion_fisica_del_trabajador'],
             'fecha_ingreso'     => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['fecha_de_ingreso']),
             'anos_anteriores'   => $row['anos_anteriores'],
+            'banco'             => $row['banco'],
             'cuenta'            => $row['cuenta'],
             'nomina'            => $row['nomina_fijocontratado'],
             'mes'               => $row['mes'],

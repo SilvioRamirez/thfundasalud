@@ -19,9 +19,9 @@
                     Bienvenid@ <strong>{{ auth()->user()->name }}</strong> {{ __('¡Has iniciado sesión!') }}
                     <hr>
 
-                    @role('user')
+                    @can('view-trabajador')
                         <a class="btn btn-primary" href="{{ route('user.recibo.index') }}"><i class="fa fa-file-invoice"></i> Recibos de Pago</a>
-                    @endrole
+                    @endcan
 
                     
                     @canany(['create-user', 'edit-user', 'delete-user'])

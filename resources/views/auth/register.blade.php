@@ -73,6 +73,26 @@
                             </div>
                         </div>
 
+                        <div class="mb-3 row">
+                            <label for="ubicacion_fisica" class="col-md-4 col-form-label text-md-end text-start">Ubicación Física</label>
+                            <div class="col-md-6">           
+                                <select name="ubicacion_fisica_id" id="ubicacion_fisica_id" class="form-select @error('ubicacion_fisica_id') is-invalid @enderror" aria-label="Ubicación Física" required>
+                                    <option value="">--- Seleccione  ---</option>
+                                    @foreach($ubicacion_fisicas as $id => $ubicacion_fisica)
+                                    
+                                        <option value="{{ $id }}" {{ $id == old('ubicacion_fisica_id') ? 'selected' : '' }}>
+                                            {{ $ubicacion_fisica }}
+                                        </option>
+
+                                    @endforeach
+                                </select>
+
+                                @error('ubicacion_fisica_id')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+
                         <div class="row mb-3">
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 

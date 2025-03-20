@@ -24,8 +24,20 @@
                     {{ $user->name }}
                 </div>
                 <div class="form-group">
+                    <strong>{{ __('Cedula')}}</strong>
+                    {{ $user->cedula }}
+                </div>
+                <div class="form-group">
+                    <strong>{{ __('Teléfono')}}</strong>
+                    {{ $user->telefono }}
+                </div>
+                <div class="form-group">
                     <strong>{{ __('Email')}}</strong>
                     {{ $user->email }}
+                </div>
+                <div class="form-group">
+                    <strong>{{ __('Ubicación Física')}}</strong>
+                    {{ $user->ubicacionFisicaName }}
                 </div>
                 <div class="form-group">
                     <strong>{{ __('Roles')}}</strong>
@@ -34,6 +46,14 @@
                             <span class="badge bg-success">{{ $v }}</span>
                         @endforeach
                     @endif
+                </div>
+                <div class="form-group">
+                    <strong>{{ __('Creado el')}}</strong>
+                    {{ $user->created_at }}
+                </div>
+                <div class="form-group">
+                    <strong>{{ __('Actualizado el')}}</strong>
+                    {{ $user->updated_at }}
                 </div>
             </div>
         </div>

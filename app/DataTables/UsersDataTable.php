@@ -66,10 +66,10 @@ class UsersDataTable extends DataTable
         $searchValue = $this->request->input('search.value');
         $query->where(function($query) use ($searchValue) {
             $query->where('users.name', 'like', "%{$searchValue}%")
-                  ->orWhere('users.email', 'like', "%{$searchValue}%")
-                  ->orWhere('users.cedula', 'like', "%{$searchValue}%")
-                  ->orWhere('users.telefono', 'like', "%{$searchValue}%")
-                  ->orWhere('ubicacion_fisicas.ubicacion_fisica', 'like', "%{$searchValue}%");
+                    ->orWhere('users.email', 'like', "%{$searchValue}%")
+                    ->orWhere('users.cedula', 'like', "%{$searchValue}%")
+                    ->orWhere('users.telefono', 'like', "%{$searchValue}%")
+                    ->orWhere('ubicacion_fisicas.ubicacion_fisica', 'like', "%{$searchValue}%");
         });
     }
 
