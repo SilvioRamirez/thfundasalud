@@ -17,7 +17,7 @@ class ReciboPagoController extends Controller
     public function recibo_pago_pdf(string $cedula, string $ano, string $mes)
     {
         // Buscar el trabajador por cédula
-        $trabajador = Trabajador::where('cedula', $cedula)->first();
+        $trabajador = Trabajador::where('cedula', $cedula)->where('ano', $ano)->where('mes', $mes)->first();
 
         if (!$trabajador) {
             return response()->json(['message' => 'Trabajador no encontrado'], 404);
@@ -47,7 +47,7 @@ class ReciboPagoController extends Controller
     public function recibo_pago_verify(string $id, string $cedula, string $ano, string $mes)
     {
         // Buscar el trabajador por Id
-        $trabajadorId = Trabajador::where('id', $id)->first();
+        $trabajadorId = Trabajador::where('id', $id)->where('ano', $ano)->where('mes', $mes)->first();
 
         if (!$trabajadorId) {
             abort(403, 'NO ES POSIBLE VERIFICAR ESTE RECIBO DE PAGO');

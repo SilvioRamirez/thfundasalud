@@ -24,8 +24,8 @@ return new class extends Migration
             $table->string('banco')->nullable();
             $table->string('cuenta')->nullable();
             $table->string('nomina')->nullable();
-            $table->string('mes')->nullable();
             $table->string('ano')->nullable();
+            $table->string('mes')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

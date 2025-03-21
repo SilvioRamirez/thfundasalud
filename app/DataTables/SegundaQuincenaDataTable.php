@@ -110,6 +110,7 @@ class SegundaQuincenaDataTable extends DataTable
             Column::make('bono_del_dia_del_padre')->title('BONO DEL DIA DEL PADRE'),
             Column::make('bono_del_dia_de_la_madre')->title('BONO DEL DIA DE LA MADRE'),
             Column::make('bono_de_uniformes')->title('BONO DE UNIFORMES'),
+            Column::make('retroactivo_meses_anteriores')->title('RETROACTIVO MESES ANTERIORES'),
             Column::make('total_asignaciones')->title('TOTAL ASIGNACIONES'),
             Column::make('catset')->title('CATSET'),
             Column::make('cahorminsas')->title('CAHORMINSAS'),
@@ -136,8 +137,8 @@ class SegundaQuincenaDataTable extends DataTable
             Column::make('total_deduciones')->title('TOTAL DEDUCIONES'),
             Column::make('total')->title('TOTAL'),
             Column::make('filtro')->title('FILTRO'),
-            Column::make('mes')->title('MES'),
             Column::make('ano')->title('AÑO'),
+            Column::make('mes')->title('MES'),
             Column::make('created_at')->title('Creado'),
             Column::make('updated_at')->title('Actualizado'),
         ];

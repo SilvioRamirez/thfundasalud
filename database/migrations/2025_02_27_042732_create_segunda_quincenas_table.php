@@ -35,6 +35,7 @@ return new class extends Migration
             $table->decimal('bono_del_dia_del_padre', total: 8, places: 2)->nullable();
             $table->decimal('bono_del_dia_de_la_madre', total: 8, places: 2)->nullable();
             $table->decimal('bono_de_uniformes', total: 8, places: 2)->nullable();
+            $table->decimal('retroactivo_meses_anteriores', total: 8, places: 2)->nullable();
             $table->decimal('total_asignaciones', total: 8, places: 2)->nullable();
             $table->decimal('catset', total: 8, places: 2)->nullable();
             $table->decimal('cahorminsas', total: 8, places: 2)->nullable();
@@ -61,8 +62,8 @@ return new class extends Migration
             $table->decimal('total_deduciones', total: 8, places: 2)->nullable();
             $table->decimal('total', total: 8, places: 2)->nullable();
             $table->string('filtro')->nullable();
-            $table->string('mes')->nullable();
             $table->string('ano')->nullable();
+            $table->string('mes')->nullable();
             $table->timestamps();
         });
     }

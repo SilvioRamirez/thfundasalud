@@ -133,8 +133,8 @@ class PrimeraQuincenaDataTable extends DataTable
             Column::make('total_deduciones')->title('TOTAL DEDUCIONES'),
             Column::make('total')->title('TOTAL '),
             Column::make('filtro')->title('FILTRO'),
-            Column::make('mes')->title('MES'),
             Column::make('ano')->title('AÑO'),
+            Column::make('mes')->title('MES'),
             Column::make('created_at')->title('Creado'),
             Column::make('updated_at')->title('Actualizado'),
         ];

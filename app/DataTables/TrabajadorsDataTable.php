@@ -103,8 +103,8 @@ class TrabajadorsDataTable extends DataTable
             Column::make('banco')->title('BANCO'),
             Column::make('cuenta')->title('CUENTA'),
             Column::make('nomina')->title('NOMINA'),
-            Column::make('mes')->title('MES'),
             Column::make('ano')->title('AÑO'),
+            Column::make('mes')->title('MES'),
             Column::make('created_at')->title('CREADO'),
             Column::make('updated_at')->title('ACTUALIZADO'),
         ];

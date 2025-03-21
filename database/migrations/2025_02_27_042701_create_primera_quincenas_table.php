@@ -58,8 +58,8 @@ return new class extends Migration
             $table->decimal('total_deduciones', total: 8, places: 2)->nullable();
             $table->decimal('total', total: 8, places: 2)->nullable();
             $table->decimal('filtro', total: 8, places: 2)->nullable();
-            $table->string('mes')->nullable();
             $table->string('ano')->nullable();
+            $table->string('mes')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
