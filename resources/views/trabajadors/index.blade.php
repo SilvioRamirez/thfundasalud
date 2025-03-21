@@ -12,7 +12,7 @@
 
 <div class="card">
     <div class="card-header bg-primary">
-        @can('create-product')
+        @can('create-trabajador')
             <div class="float-start">
                 {{-- <a href="{{ route('products.create') }}" class="btn btn-light btn-sm"><i class="fa fa-plus"></i> {{ __('Agregar Nuevo Trabajador') }}</a> --}}
                 <button type="button" class="btn btn-light btn-sm" title="Carga Masiva de Trabajadores" onclick="openModalCargaMasivaTrabajadors()"><i class="fa fa-file-import"></i> Carga Masiva de Trabajadores</button>
@@ -23,7 +23,7 @@
             <a href="{{ route('products.index') }}" class="btn btn-light btn-sm">&larr; {{ __('actions.return') }}</a>
         </div>
     </div>
-    @can('view-product')
+    @can('view-trabajador')
         <div class="card-body">
 
             {{ $dataTable->table() }}
@@ -32,37 +32,37 @@
     @endcan
 </div>
 
-{{-- Modal Cambiar Estatus del Lente --}}
-<div class="modal fade" id="ModalCargaMasivaTrabajadors" tabindex="-1" aria-labelledby="ModalCargaMasivaTrabajadorsLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header bg-primary text-white">
-                <h1 class="modal-title fs-5" id="ModalCargaMasivaTrabajadorsLabel"><i class="fa fa-file-import"></i> Carga Masiva de Trabajadores</h1>
-                <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-            
-                <div class="alert alert-info">
-                    <p class="text-justify">Para la carga masiva de Trabajadores el archivo debe estar en formato Excel y contener las columnas Año y Mes como se muestra en el siguiente ejemplo: <strong>trabajadores_2025-1.xlsx</strong> Desde <a href="{{ asset('storage/file/trabajadores_2025-2.xlsx') }}" download class="alert-link">Aquí</a>, puedes descargar un archivo base de ejemplo.</p>
+@can('create-trabajador')
+    <div class="modal fade" id="ModalCargaMasivaTrabajadors" tabindex="-1" aria-labelledby="ModalCargaMasivaTrabajadorsLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h1 class="modal-title fs-5" id="ModalCargaMasivaTrabajadorsLabel"><i class="fa fa-file-import"></i> Carga Masiva de Trabajadores</h1>
+                    <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-
-                <form id="trabajadorsFormUpload" action="{{ route('trabajadors.import') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-
-                    <label for="file">Selecciona un archivo de Excel:</label>
-                    <input type="file" name="file" class="form-control" accept=".xlsx, .xls, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
-                    
-            </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-success" id="btnSubmitData"><i class="fa fa-file-import"></i> Importar Data</button>
+                <div class="modal-body">
+                
+                    <div class="alert alert-info">
+                        <p class="text-justify">Para la carga masiva de Trabajadores el archivo debe estar en formato Excel y contener las columnas Año y Mes como se muestra en el siguiente ejemplo: <strong>trabajadores_2025-1.xlsx</strong> Desde <a href="{{ asset('storage/file/trabajadores_2025-2.xlsx') }}" download class="alert-link">Aquí</a>, puedes descargar un archivo base de ejemplo.</p>
                     </div>
-                </form>
-                <div id="progressBar" class="container">
+
+                    <form id="trabajadorsFormUpload" action="{{ route('trabajadors.import') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+
+                        <label for="file">Selecciona un archivo de Excel:</label>
+                        <input type="file" name="file" class="form-control" accept=".xlsx, .xls, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                        
                 </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-success" id="btnSubmitData"><i class="fa fa-file-import"></i> Importar Data</button>
+                        </div>
+                    </form>
+                    <div id="progressBar" class="container">
+                    </div>
+            </div>
         </div>
     </div>
-</div>
-
+@endcan
 
 @endsection
 

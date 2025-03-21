@@ -30,10 +30,10 @@
     @endcan
 </div>
 
-{{-- Modal Cambiar Estatus del Lente --}}
-<div class="modal fade" id="ModalCargaMasivaSegundaQuincena" tabindex="-1" aria-labelledby="ModalCargaMasivaSegundaQuincenaLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
+@can('create-segundaquincena')
+    <div class="modal fade" id="ModalCargaMasivaSegundaQuincena" tabindex="-1" aria-labelledby="ModalCargaMasivaSegundaQuincenaLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
             <div class="modal-header bg-primary text-white">
                 <h1 class="modal-title fs-5" id="ModalCargaMasivaSegundaQuincenaLabel"><i class="fa fa-file-import"></i> Carga Masiva de Segunda Quincena</h1>
                 <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -57,9 +57,10 @@
                 </form>
                 <div id="progressBar" class="container">
                 </div>
+            </div>
         </div>
     </div>
-</div>
+@endcan
 
 
 @endsection
