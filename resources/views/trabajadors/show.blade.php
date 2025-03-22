@@ -53,7 +53,7 @@
                     </div>
 
                     <div class="row">
-                        <label for="description" class="col-md-4 col-form-label text-md-end text-start"><strong>Dependencia:</strong></label>
+                        <label for="description" class="col-md-4 col-form-label text-md-end text-start"><strong>Dependencia Administrativa:</strong></label>
                         <div class="col-md-6" style="line-height: 35px;">
                             {{ $trabajador->dependencia }}
                         </div>
@@ -63,6 +63,13 @@
                         <label for="description" class="col-md-4 col-form-label text-md-end text-start"><strong>Fecha de Ingreso:</strong></label>
                         <div class="col-md-6" style="line-height: 35px;">
                             {{ $trabajador->fecha_ingreso }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <label for="description" class="col-md-4 col-form-label text-md-end text-start"><strong>Años de Servicio en la Institución:</strong></label>
+                        <div class="col-md-6" style="line-height: 35px;">
+                            {{ $trabajador->anos_ingreso }}
                         </div>
                     </div>
 

@@ -51,6 +51,11 @@ class Trabajador extends Model
         return Carbon::parse($this->attributes['fecha_ingreso'])->format('d/m/Y');
     }
 
+    public function getAnosIngresoAttribute()
+    {
+        return Carbon::parse($this->attributes['fecha_ingreso'])->age;
+    }
+
     public function getAnosApnAttribute()
     {
         /* return \Carbon\Carbon::parse($this->attributes['anos_anteriores'])->format('d/m/Y'); */
