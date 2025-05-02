@@ -45,7 +45,15 @@ class PermissionSeeder extends Seeder
             'view-ubicacion_fisica',
             'create-ubicacion_fisica',
             'edit-ubicacion_fisica',
-            'delete-ubicacion_fisica'
+            'delete-ubicacion_fisica',
+            'view-participacion',
+            'create-participacion',
+            'edit-participacion',
+            'delete-participacion',
+            'view-eleccion',
+            'create-eleccion',
+            'edit-eleccion',
+            'delete-eleccion'
         ];
 
         // Looping and Inserting Array's Permissions into Permission Table

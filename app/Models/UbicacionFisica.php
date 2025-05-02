@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Carbon\Carbon;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
@@ -11,7 +12,7 @@ use Spatie\Activitylog\LogOptions;
 class UbicacionFisica extends Model
 {
     /** @use HasFactory<\Database\Factories\UbicacionFisicaFactory> */
-    use HasFactory, LogsActivity;
+    use HasFactory, LogsActivity, SoftDeletes;
 
     public function getActivitylogOptions(): LogOptions
     {

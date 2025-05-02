@@ -41,7 +41,7 @@
             <div class="modal-body">
 
                 <div class="alert alert-info">
-                    <p class="text-justify">Para la carga masiva de la Segunda Quincena el archivo debe estar en formato Excel y contener las columnas Año y Mes como se muestra en el siguiente ejemplo: <strong>segunda_2025-1.xlsx</strong> Desde <a href="{{ asset('storage/file/segunda_2025-2.xlsx') }}" download class="alert-link">Aquí</a>, puedes descargar un archivo base de ejemplo.</p>
+                    <p class="text-justify">Para la carga masiva de la Segunda Quincena el archivo debe estar en formato Excel y contener las columnas Año y Mes como se muestra en el siguiente ejemplo: <strong>segundaquincena_2025-1.xlsx</strong> Desde <a href="{{ asset('storage/file/segundaquincena_2025-2.xlsx') }}" download class="alert-link">Aquí</a>, puedes descargar un archivo base de ejemplo.</p>
                 </div>
 
                 <form id="segundaquincenaFormUpload" action="{{ route('segundaquincena.import') }}" method="POST" enctype="multipart/form-data">

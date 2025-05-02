@@ -329,6 +329,13 @@ return [
             'icon' => 'fa fa-file-invoice',
             'can' => ['view-trabajador'],
         ],
+        ['header' => 'MENU PARTICIPACIÓN'],
+        [
+            'text' => 'Participación en Procesos',
+            'route' => 'participacion.index',
+            'icon' => 'fa fa-check-to-slot',
+            'can' => ['create-participacion', 'edit-participacion', 'delete-participacion', 'view-participacion'],
+        ],
         [
             'header' => 'MENU ADMINISTRACIÓN',
             'can' => ['create-trabajador', 'edit-trabajador', 'delete-trabajador', 'create-primeraquincena', 'edit-primeraquincena', 'delete-primeraquincena', 'view-primeraquincena', 'create-segundaquincena', 'edit-segundaquincena', 'delete-segundaquincena', 'view-segundaquincena'],
@@ -372,6 +379,12 @@ return [
                     'url' => '/ubicacion_fisicas',
                     'icon' => 'fa fa-map-marker-alt',
                     'can' => ['create-ubicacion-fisica', 'edit-ubicacion-fisica', 'delete-ubicacion-fisica'],
+                ],
+                [
+                    'text' => 'Elecciones',
+                    'url' => '/eleccions',
+                    'icon' => 'fa fa-check-to-slot',
+                    'can' => ['create-eleccion', 'edit-eleccion', 'delete-eleccion', 'view-eleccion'],
                 ],
                 [
                     'text' => 'Log de Actividad',

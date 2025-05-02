@@ -1,6 +1,6 @@
 @extends('layouts.appauth')
 
-@section('title', 'Login')
+@section('title', 'Trujillo')
 
 @section('content')
 

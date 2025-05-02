@@ -23,7 +23,11 @@ class User extends Authenticatable
      */
     public function getActivitylogOptions(): LogOptions
     {
-        return LogOptions::defaults();
+        return LogOptions::defaults()
+            ->logAll()
+            ->logOnlyDirty()
+            ->setDescriptionForEvent(fn(string $eventName) => "This model has been {$eventName}")
+            ->dontSubmitEmptyLogs();
     }
     
     /**
