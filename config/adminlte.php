@@ -322,14 +322,19 @@ return [
             'icon' => 'fa fa-cart-shopping',
             'can' => ['create-product', 'edit-product', 'delete-product', 'view-product'],
         ], */
-        ['header' => 'MENU TRABAJADOR'],
+        [
+            'header' => 'MENU TRABAJADOR',
+            'can' => ['view-trabajador'],
+        ],
         [
             'text' => 'Recibos de Pago',
             'route' => 'user.recibo.index',
             'icon' => 'fa fa-file-invoice',
             'can' => ['view-trabajador'],
         ],
-        ['header' => 'MENU PARTICIPACIÓN'],
+        ['header' => 'MENU PARTICIPACIÓN',
+            'can' => ['view-participacion'],
+        ],
         [
             'text' => 'Participación en Procesos',
             'route' => 'participacion.index',
