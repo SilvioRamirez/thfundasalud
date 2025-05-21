@@ -17,8 +17,13 @@
                             <i class="fa fa-chart-pie"></i> Resumen de Participación
                         </div>
                         <div class="float-end">
+                            <a href="{{ route('eleccion.excel.general', ['eleccionId' => $eleccion->id]) }}"
+                                class="btn btn-success btn-sm">
+                                <i class="fa fa-file-excel"></i> Descargar Excel
+                            </a>
                             <a href="{{ route('eleccions.index') }}" class="btn btn-light btn-sm">&larr;
-                                {{ __('actions.return') }}</a>
+                                {{ __('actions.return') }}
+                            </a>
                         </div>
                     </div>
                     <div class="card-body">
@@ -77,18 +82,22 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($usuarios_data as $usuario)
-                                <tr>
-                                    <td>{{ $usuario['nombre'] }}</td>
-                                    <td>{{ $usuario['ubicacion'] }}</td>
-                                    <td>{{ $usuario['cantidad'] }}</td>
-                                    <td>
-                                        <a href="{{ route('eleccion.usuario.registros', ['eleccionId' => $eleccion->id, 'userId' => $usuario['id']]) }}" 
-                                           class="btn btn-info btn-sm">
-                                            <i class="fa fa-list"></i> Ver Registros
-                                        </a>
-                                    </td>
-                                </tr>
+                                @foreach ($usuarios_data as $usuario)
+                                    <tr>
+                                        <td>{{ $usuario['nombre'] }}</td>
+                                        <td>{{ $usuario['ubicacion'] }}</td>
+                                        <td>{{ $usuario['cantidad'] }}</td>
+                                        <td>
+                                            <a href="{{ route('eleccion.usuario.registros', ['eleccionId' => $eleccion->id, 'userId' => $usuario['id']]) }}"
+                                                class="btn btn-info btn-sm">
+                                                <i class="fa fa-list"></i> Ver Registros
+                                            </a>
+                                            <a href="{{ route('eleccion.usuario.excel', ['eleccionId' => $eleccion->id, 'userId' => $usuario['id']]) }}"
+                                                class="btn btn-success btn-sm">
+                                                <i class="fa fa-file-excel"></i> Descargar Excel
+                                            </a>
+                                        </td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>
@@ -102,13 +111,13 @@
 @push('js')
     {{-- Primero cargamos la biblioteca Chart.js --}}
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script> --}}
-    
+
     {{-- Luego renderizamos cada gráfico individualmente --}}
-            // Renderizamos los gráficos disponibles
-            {!! $chart_registros->renderChartJsLibrary() !!}
-            {!! $chart_registros->renderJs() !!}
-            
-            // Renderizamos el gráfico de usuarios
-            {!! $chart_usuarios->renderChartJsLibrary() !!}
-            {!! $chart_usuarios->renderJs() !!}
+    // Renderizamos los gráficos disponibles
+    {!! $chart_registros->renderChartJsLibrary() !!}
+    {!! $chart_registros->renderJs() !!}
+
+    // Renderizamos el gráfico de usuarios
+    {!! $chart_usuarios->renderChartJsLibrary() !!}
+    {!! $chart_usuarios->renderJs() !!}
 @endpush

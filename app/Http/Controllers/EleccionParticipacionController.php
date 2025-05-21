@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\EleccionExport;
+use App\Exports\EleccionUsuarioExport;
 
 class EleccionParticipacionController extends Controller
 {
@@ -257,5 +260,39 @@ class EleccionParticipacionController extends Controller
                     ->get();
         
         return view('participants.registros_usuario', compact('eleccion', 'usuario', 'registros'));
+    }
+
+    /**
+     * Exporta a Excel la información general de participación en una elección
+     */
+    public function exportarExcelGeneral($eleccionId)
+    {
+        $eleccion = Eleccion::findOrFail($eleccionId);
+        
+        // Obtener el año y mes más reciente
+        $ultimo_registro = Trabajador::selectRaw('ano, mes')
+                            ->orderBy('ano', 'desc')
+                            ->orderBy('mes', 'desc')
+                            ->first();
+                            
+        $ano_reciente = $ultimo_registro->ano ?? 'No disponible';
+        $mes_reciente = $ultimo_registro->mes ?? 'No disponible';
+        
+        $filename = "Participacion_{$eleccion->nombre}_{$ano_reciente}_{$mes_reciente}.xlsx";
+        
+        return Excel::download(new EleccionExport($eleccionId), $filename);
+    }
+    
+    /**
+     * Exporta a Excel la información de participación registrada por un usuario específico
+     */
+    public function exportarExcelUsuario($eleccionId, $userId)
+    {
+        $eleccion = Eleccion::findOrFail($eleccionId);
+        $usuario = \App\Models\User::findOrFail($userId);
+        
+        $filename = "Participacion_{$eleccion->nombre}_Usuario_{$usuario->name}.xlsx";
+        
+        return Excel::download(new EleccionUsuarioExport($eleccionId, $userId), $filename);
     }
 }

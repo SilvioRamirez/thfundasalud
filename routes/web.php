@@ -82,6 +82,13 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::get('/elecciones/{eleccionId}/registros/{userId}', [EleccionParticipacionController::class, 'verRegistrosUsuario'])
      ->name('eleccion.usuario.registros');
+     
+    /* Rutas para exportar a Excel */
+    Route::get('/elecciones/{eleccionId}/excel', [EleccionParticipacionController::class, 'exportarExcelGeneral'])
+     ->name('eleccion.excel.general');
+     
+    Route::get('/elecciones/{eleccionId}/usuario/{userId}/excel', [EleccionParticipacionController::class, 'exportarExcelUsuario'])
+     ->name('eleccion.usuario.excel');
 
     /* Aquí se agrupan todos los controladores que queramos tener con resources */
     Route::resources([

@@ -7,6 +7,9 @@
 @stop
 
 @section('content')
+    @php
+        use Illuminate\Support\Facades\Auth;
+    @endphp
 
     @include('fragment.messages')
 
@@ -31,9 +34,15 @@
                         </h4>
                     </div>
                     <div class="card-footer">
-                        <a href="{{ route('elecciones.formulario', $eleccion->id) }}" class="btn btn-primary btn-block">
-                            <i class="fa fa-user-plus"></i> Registrar Participación
-                        </a>
+                        <div class="d-flex justify-content-between">
+                            <a href="{{ route('elecciones.formulario', $eleccion->id) }}" class="btn btn-primary">
+                                <i class="fa fa-user-plus"></i> Registrar Participación
+                            </a>
+                            <a href="{{ route('eleccion.usuario.excel', ['eleccionId' => $eleccion->id, 'userId' => Auth::id()]) }}" 
+                                class="btn btn-success">
+                                <i class="fa fa-file-excel"></i> Mis Registros Excel
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
