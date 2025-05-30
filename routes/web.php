@@ -19,6 +19,8 @@ use App\Http\Controllers\UserReciboController;
 use App\Http\Controllers\UbicacionFisicaController;
 use App\Http\Controllers\EleccionParticipacionController;
 use App\Http\Controllers\EleccionController;
+use App\Http\Controllers\TipoSolicitudController;
+use App\Http\Controllers\SolicitudController;
 use App\Mail\ContactanosMailable;
 use Illuminate\Support\Facades\Mail;
 
@@ -58,7 +60,13 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('api/productDelete/{product}',  [ProductController::class, 'destroy']);
     Route::post('api/ubicacion_fisicaDelete/{ubicacion_fisica}',  [UbicacionFisicaController::class, 'destroy']);
     Route::post('api/eleccionDelete/{eleccion}',  [EleccionController::class, 'destroy']);
+    Route::post('api/tipoSolicitudDelete/{tipoSolicitud}',  [TipoSolicitudController::class, 'destroy']);
+    Route::post('api/solicitudDelete/{solicitud}',  [SolicitudController::class, 'destroy']);
 
+    /* Rutas específicas para solicitudes */
+    Route::delete('solicitudes/documentos/{documento}', [SolicitudController::class, 'eliminarDocumento'])->name('solicitudes.documentos.destroy');
+    Route::get('solicitudes/documentos/{documento}/descargar', [SolicitudController::class, 'descargarDocumento'])->name('solicitudes.documentos.download');
+    Route::get('admin-solicitudes', [SolicitudController::class, 'adminIndex'])->name('admin-solicitudes.index');
 
     /* Rutas para importar y exportar excel */
     Route::post('trabajadors-import', [TrabajadorExcelController::class, 'import'])->name('trabajadors.import');
@@ -100,6 +108,8 @@ Route::group(['middleware' => ['auth']], function() {
         'segundaquincena'   => SegundaQuincenaController::class,
         'ubicacion_fisicas' => UbicacionFisicaController::class,
         'eleccions'         => EleccionController::class,
+        'tipos-solicitud'   => TipoSolicitudController::class,
+        'solicitudes'       => SolicitudController::class,
     ]);
 
 });

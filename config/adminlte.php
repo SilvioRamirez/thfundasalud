@@ -332,7 +332,8 @@ return [
             'icon' => 'fa fa-file-invoice',
             'can' => ['view-trabajador'],
         ],
-        ['header' => 'MENU PARTICIPACIÓN',
+        [
+            'header' => 'MENU PARTICIPACIÓN',
             'can' => ['view-participacion'],
         ],
         [
@@ -364,6 +365,22 @@ return [
             'can' => ['create-segundaquincena', 'edit-segundaquincena', 'delete-segundaquincena', 'view-segundaquincena'],
         ],
         [
+            'header' => 'GESTIÓN DE SOLICITUDES',
+            'can' => ['view-solicitud', 'view-tipo-solicitud'],
+        ],
+        [
+            'text' => 'Mis Solicitudes',
+            'url' => '/solicitudes',
+            'icon' => 'fa fa-file',
+            'can' => ['create-solicitud', 'edit-solicitud', 'delete-solicitud', 'view-solicitud'],
+        ],
+        [
+            'text' => 'Administrar Solicitudes',
+            'url' => '/admin-solicitudes',
+            'icon' => 'fa fa-file-pen',
+            'can' => ['create-admin-solicitud', 'edit-admin-solicitud', 'delete-admin-solicitud', 'view-admin-solicitud'],
+        ],
+        [
             'text' => 'CONFIGURACIÓN',
             'icon' => 'fas fa-cog',
             'submenu' => [
@@ -384,6 +401,12 @@ return [
                     'url' => '/ubicacion_fisicas',
                     'icon' => 'fa fa-map-marker-alt',
                     'can' => ['create-ubicacion-fisica', 'edit-ubicacion-fisica', 'delete-ubicacion-fisica'],
+                ],
+                [
+                    'text' => 'Tipos de Solicitud',
+                    'url' => '/tipos-solicitud',
+                    'icon' => 'fa fa-list',
+                    'can' => ['create-tipo-solicitud', 'edit-tipo-solicitud', 'delete-tipo-solicitud', 'view-tipo-solicitud'],
                 ],
                 [
                     'text' => 'Elecciones',
