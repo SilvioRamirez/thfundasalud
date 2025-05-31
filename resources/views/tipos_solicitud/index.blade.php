@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content_header')
-    <h1 class="text-center">Administración de Solicitudes</h1>
+    <h1 class="text-center">Administración Tipos de Solicitudes</h1>
 @stop
 
 @section('content')
@@ -12,7 +12,7 @@
     <div class="card-header bg-primary ">
         @can('create-solicitud')
             <div class="float-start">
-                <a href="{{ route('solicitudes.create') }}" class="btn btn-light btn-sm"><i class="fa fa-plus"></i> {{ __('Nueva Solicitud') }}</a>
+                <a href="{{ route('tipos-solicitud.create') }}" class="btn btn-light btn-sm"><i class="fa fa-plus"></i> {{ __('Nuevo Tipo de Solicitud') }}</a>
             </div>
         @endcan
         <div class="float-end">
@@ -38,7 +38,7 @@
     function openModalDelete(id){
         Swal.fire({
             title: "¿Estás seguro?",
-            text: "Esta solicitud se eliminará definitivamente junto con todos sus documentos",
+            text: "Este tipo de solicitud se eliminará definitivamente",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
@@ -47,13 +47,13 @@
             cancelButtonText: "Cancelar"
             }).then((result) => {
             if (result.isConfirmed) {
-                var urlDelete = 'api/solicitudDelete/'+`${id}`;
+                var urlDelete = 'api/tipos-solicitudDelete/'+`${id}`;
                 axios.post(urlDelete).then(response => {
                     let status = response.status;
                     let message = response.statusText;
                     console.log(response.data);
 
-                    var tabla = $('#solicitudes-table').DataTable();
+                    var tabla = $('#tipos-solicitud-table').DataTable();
                     tabla.ajax.reload();
 
                 }).catch(error => {                  
@@ -63,7 +63,7 @@
                 });
                 Swal.fire({
                     title: "¡Eliminado!",
-                    text: "La solicitud ha sido eliminada.",
+                    text: "El tipo de solicitud ha sido eliminado.",
                     icon: "success"
                 });
                 
