@@ -22,70 +22,26 @@ class TrabajadorsIndividualDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            /* ->addColumn('ano', function ($trabajador) {
-                $anos = [];
-                foreach($trabajador->primeraQuincena as $primeraQuincena){
-                    foreach($trabajador->segundaQuincena as $segundaQuincena){
-                        if($primeraQuincena->ano == $segundaQuincena->ano && $primeraQuincena->mes == $segundaQuincena->mes){
-                            $anos[] = $primeraQuincena->ano;
-                        }
-                    }
-
-                }
-                // Eliminamos duplicados y ordenamos
-                // anos = array_unique($anos);
-                rsort($anos);
-                return implode('<br>', $anos);
-            })
-            ->addColumn('mes', function ($trabajador) {
-                $meses = [];
-                foreach($trabajador->primeraQuincena as $primeraQuincena){
-                    foreach($trabajador->segundaQuincena as $segundaQuincena){
-                        if($primeraQuincena->ano == $segundaQuincena->ano && $primeraQuincena->mes == $segundaQuincena->mes){
-                            $meses[] = $primeraQuincena->mes;
-                        }
-                    }
-                }
-                // Eliminamos duplicados y ordenamos de mayor a menor
-                $meses = array_unique($meses);
-                rsort($meses);
-                return implode('<br>', $meses);
-            }) */
             ->addColumn('primera_quincena', function ($trabajador) {
-                $str = '';
-                /* $registros = [];
-                
-                foreach($trabajador->primeraQuincena as $primeraQuincena){
-                    foreach($trabajador->segundaQuincena as $segundaQuincena){
-                        if($primeraQuincena->ano == $segundaQuincena->ano && $primeraQuincena->mes == $segundaQuincena->mes){
-                            $registros[] = [
-                                'ano' => $primeraQuincena->ano,
-                                'mes' => $primeraQuincena->mes,
-                                'cedula' => $trabajador->cedula
-                            ];
-                        }
-                    }
-                }
-                
-                // Ordenamos los registros por mes de mayor a menor
-                usort($registros, function($a, $b) {
-                    return $b['mes'] <=> $a['mes'];
-                });
-                
-                foreach($registros as $registro) {
-                    $str .= '<a class="btn btn-success btn-sm" title="Descargar Recibo" href="'.
-                           route('recibopago.pdf', [$registro['cedula'], $registro['ano'], $registro['mes']]).
-                           '"><i class="fa fa-download"></i></a><br><br>';
-                }
-                
-                return $str; */
+                // Verificar si existen registros tanto en primera como en segunda quincena
+                $existePrimeraQuincena = $trabajador->primeraQuincena()
+                    ->where('ano', $trabajador->ano)
+                    ->where('mes', $trabajador->mes)
+                    ->exists();
 
-                $str = '';
-                    $str .= '<a class="btn btn-success btn-sm" title="Descargar Recibo" href="'.
-                            route('recibopago.pdf', [$trabajador->cedula, $trabajador->ano, $trabajador->mes]).
-                            '"><i class="fa fa-download"></i></a>';
+                $existeSegundaQuincena = $trabajador->segundaQuincena()
+                    ->where('ano', $trabajador->ano)
+                    ->where('mes', $trabajador->mes)
+                    ->exists();
 
-                return $str;
+                // Solo mostrar el botón si existen ambos registros
+                if ($existePrimeraQuincena && $existeSegundaQuincena) {
+                    return '<a class="btn btn-success btn-sm" title="Descargar Recibo" href="' .
+                           route('recibopago.pdf', [$trabajador->cedula, $trabajador->ano, $trabajador->mes]) .
+                           '"><i class="fa fa-download"></i></a>';
+                }
+
+                return ''; // No mostrar el botón si falta alguna quincena
             })
             ->rawColumns(['primera_quincena'])
             ->setRowId('id');
