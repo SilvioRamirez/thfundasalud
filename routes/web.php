@@ -21,6 +21,9 @@ use App\Http\Controllers\EleccionParticipacionController;
 use App\Http\Controllers\EleccionController;
 use App\Http\Controllers\TipoSolicitudController;
 use App\Http\Controllers\SolicitudController;
+use App\Http\Controllers\FeDeVidaController;
+use App\Http\Controllers\DropdownController;
+
 use App\Mail\ContactanosMailable;
 use Illuminate\Support\Facades\Mail;
 
@@ -97,6 +100,27 @@ Route::group(['middleware' => ['auth']], function() {
      
     Route::get('/elecciones/{eleccionId}/usuario/{userId}/excel', [EleccionParticipacionController::class, 'exportarExcelUsuario'])
      ->name('eleccion.usuario.excel');
+
+    Route::get('/fe_de_vidas/check', [FeDeVidaController::class, 'check'])
+     ->name('fe_de_vidas.check');
+
+    Route::post('/fe_de_vidas/check/cedula', [FeDeVidaController::class, 'checkCedula'])
+     ->name('fe_de_vidas.check.cedula');
+
+    Route::get('/fe_de_vidas/create/{trabajador}', [FeDeVidaController::class, 'create'])
+     ->name('fe_de_vidas.create');
+
+    Route::post('/fe_de_vidas', [FeDeVidaController::class, 'store'])
+     ->name('fe_de_vidas.store');
+
+    Route::get('/fe_de_vidas', [FeDeVidaController::class, 'index'])
+     ->name('fe_de_vidas.index');
+
+    Route::get('api/fetch-parroquias/{municipioId}', [DropdownController::class, 'fetchParroquia'])
+     ->name('fetch.parroquias');
+    
+    Route::get('api/fetch-jefe-inmediato/{cedula}', [FeDeVidaController::class, 'fetchJefeInmediato'])
+     ->name('fetch.jefe-inmediato');
 
     /* Aquí se agrupan todos los controladores que queramos tener con resources */
     Route::resources([

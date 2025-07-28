@@ -153,4 +153,9 @@ class Trabajador extends Model
     {
         return $this->belongsToMany(Eleccion::class, 'eleccion_participants')->withTimestamps();
     }
+
+    public function fe_de_vida()
+    {
+        return $this->hasOne(FeDeVida::class);
+    }
 }

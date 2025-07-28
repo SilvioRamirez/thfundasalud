@@ -381,6 +381,24 @@ return [
             'can' => ['create-admin-solicitud', 'edit-admin-solicitud', 'delete-admin-solicitud', 'view-admin-solicitud'],
         ],
         [
+            'text' => 'FE DE VIDA',
+            'icon' => 'fas fa-user-check',
+            'submenu' => [
+                [
+                    'text' => 'Registrar Fe de Vida',
+                    'route' => 'fe_de_vidas.check',
+                    'icon' => 'fa fa-user-plus',
+                    'can' => ['create-fe-de-vida', 'edit-fe-de-vida', 'delete-fe-de-vida'],
+                ],
+                [
+                    'text' => 'Administrar Fe de Vidas',
+                    'url' => '/fe_de_vidas',
+                    'icon' => 'fa fa-users-cog',
+                    'can' => ['create-admin-fe-de-vida', 'edit-admin-fe-de-vida', 'delete-admin-fe-de-vida'],
+                ],
+            ],
+        ],
+        [
             'text' => 'CONFIGURACIÓN',
             'icon' => 'fas fa-cog',
             'submenu' => [

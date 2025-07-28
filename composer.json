@@ -9,6 +9,7 @@
         "php": "^8.2",
         "anhskohbo/no-captcha": "^3.7",
         "barryvdh/laravel-dompdf": "^3.1",
+        "intervention/image-laravel": "^1.4",
         "jeroennoten/laravel-adminlte": "^3.14",
         "laravel-lang/common": "^6.5",
         "laravel/framework": "^11.31",
