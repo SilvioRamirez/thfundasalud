@@ -116,6 +116,15 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/fe_de_vidas', [FeDeVidaController::class, 'index'])
      ->name('fe_de_vidas.index');
 
+    Route::get('/fe_de_vidas/general', [FeDeVidaController::class, 'indexGeneral'])
+     ->name('fe_de_vidas.general');
+
+    Route::post('/fe_de_vidas/{fe_de_vida}/view', [FeDeVidaController::class, 'viewFeDeVida'])
+     ->name('fe_de_vidas.view');
+
+    Route::post('/fe_de_vidas/{fe_de_vida}/confirm', [FeDeVidaController::class, 'confirmFeDeVida'])
+     ->name('fe_de_vidas.confirm');
+
     Route::get('api/fetch-parroquias/{municipioId}', [DropdownController::class, 'fetchParroquia'])
      ->name('fetch.parroquias');
     

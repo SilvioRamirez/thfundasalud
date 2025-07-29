@@ -3,7 +3,7 @@
 @section('title', content: 'Fe de Vidas')
 
 @section('content_header')
-    <h1 class="text-center">Administración de Fe de Vidas</h1>
+    <h1 class="text-center">Administración de Fe de Vidas General</h1>
 @stop
 
 @section('content')
@@ -72,6 +72,7 @@
                 
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="btnConfirmFeDeVida" style="display: none;" onclick="confirmFeDeVida()"><i class="fa fa-check mr-2"></i>Confirmar</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa fa-close mr-2"></i>Cerrar</button>
             </div>
         </div>
@@ -83,6 +84,37 @@
 @push('scripts')
     {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
 <script>
+
+function confirmFeDeVida() {
+            var id = document.getElementById('fe_de_vida_id').value;
+            var url = '/fe_de_vidas/' + id + '/confirm';
+
+            axios.post(url).then(response => {
+                let status = response.status;
+                let message = response.statusText;
+
+                $('#fe_de_vidas-table').DataTable().ajax.reload(null, false);
+
+                bootstrap.Modal.getOrCreateInstance(document.getElementById('viewFeDeVidaModal')).hide();
+
+                Swal.fire({
+                    title: "¡Confirmado!",
+                    text: message, // Usamos el mensaje de la respuesta
+                    icon: "success"
+                });
+            }).catch(error => {
+                if (error.response) {
+                    /* console.log(error.response.data.errors); */
+                    Swal.fire({
+                        title: "Error",
+                        text: error.response.data.message ||
+                            "Ha ocurrido un error al confirmar la Fe de Vida",
+                        html: error.response.data.details,
+                        icon: "error"
+                    });
+                }
+            });   
+        }
 
         function mostrarArchivo(urlArchivo) {
             // Ocultar ambos contenedores inicialmente

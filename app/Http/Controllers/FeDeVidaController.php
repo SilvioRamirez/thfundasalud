@@ -8,7 +8,9 @@ use App\Models\UbicacionFisica;
 use App\Models\Municipio;
 use App\Models\FeDeVida;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 use App\DataTables\FeDeVidasDataTable;
+use App\DataTables\FeDeVidasGeneralDataTable;
 use Illuminate\Support\Str;
 use Intervention\Image\Laravel\Facades\Image;
 
@@ -24,6 +26,7 @@ class FeDeVidaController extends Controller
         $this->middleware('permission:create-fe-de-vida', ['only' => ['create','store']]);
         $this->middleware('permission:edit-fe-de-vida', ['only' => ['edit','update']]);
         $this->middleware('permission:delete-fe-de-vida', ['only' => ['destroy']]);
+        $this->middleware('permission:general-fe-de-vida', ['only' => ['indexGeneral']]);
     }
 
     public function check()
@@ -96,6 +99,11 @@ class FeDeVidaController extends Controller
         return $dataTable->render('fe_de_vidas.index');
     }
 
+    public function indexGeneral(FeDeVidasGeneralDataTable $dataTable)
+    {
+        return $dataTable->render('fe_de_vidas.general');
+    }
+
     public function create(Trabajador $trabajador)
     {
         $municipios = Municipio::where('estado_id', 20)->get();
@@ -120,22 +128,30 @@ class FeDeVidaController extends Controller
         // Handle file upload
         $fileName = null;
         if ($request->hasFile('image_url')) {
-            // Eliminar imagen anterior si existe
+            // Eliminar archivo anterior si existe
             if ($request->file('image_url') && Storage::exists($request->file('image_url'))) {
                 Storage::delete($request->file('image_url'));
             }
 
-            $nombre = Str::random(10) . $request->file('image_url')->getClientOriginalName();
-
+            $archivo = $request->file('image_url');
+            $extension = $archivo->getClientOriginalExtension();
+            $nombre = Str::random(10) . '_' . $archivo->getClientOriginalName();
             $ruta = public_path() . '/storage/fe_de_vidas/' . $nombre;
 
-            Image::read($request->file('image_url'))
-                ->scaleDown(height: 1000)
-                ->save($ruta);
+            // Verificar si es una imagen para procesarla
+            $extensionesImagen = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+            if (in_array(strtolower($extension), $extensionesImagen)) {
+                // Procesar imagen: redimensionar
+                Image::read($archivo)
+                    ->scaleDown(height: 1000)
+                    ->save($ruta);
+            } else {
+                // Para documentos (PDF, DOC, DOCX): mover directamente sin procesamiento
+                $archivo->move(public_path() . '/storage/fe_de_vidas/', $nombre);
+            }
 
-            // Guardar nueva imagen
+            // Guardar ruta del archivo
             $fileName = '/storage/fe_de_vidas/'. $nombre;
-
         }
 
         $fe_de_vida = new FeDeVida();
@@ -146,30 +162,52 @@ class FeDeVidaController extends Controller
         $fe_de_vida->ubicacion_fisica_funcion = $request->ubicacion_fisica_funcion;
         $fe_de_vida->jefe_inmediato_id = $request->jefe_inmediato_id;
         $fe_de_vida->image_url = $fileName;
-        $fe_de_vida->registered_by = auth()->user()->id;
+        $fe_de_vida->registered_by = Auth::user()->id;
         $fe_de_vida->observaciones = $request->observaciones;
         $fe_de_vida->save();
 
         return redirect()->route('fe_de_vidas.check')->with('success', 'Fe de Vida registrada correctamente.');
     }
 
-    public function show($id)
+    public function viewFeDeVida($fe_de_vida)
     {
-        return view('fe_de_vidas.show');
+        $fe_de_vida = FeDeVida::findOrFail($fe_de_vida)->load('trabajador', 'municipio', 'parroquia', 'ubicacion_fisica', 'jefe_inmediato');
+
+        $fe_de_vida->toJson();
+
+        return response()->json($fe_de_vida);
     }
 
-    public function edit($id)
+    public function confirmFeDeVida($fe_de_vida)
     {
-        return view('fe_de_vidas.edit');
+        $fe_de_vida = FeDeVida::findOrFail($fe_de_vida);
+
+        $fe_de_vida->status = 'Confirmado';
+        $fe_de_vida->save();
+
+        return response()->json($fe_de_vida);
     }
 
-    public function update(Request $request, $id)
+    /**
+     * Obtiene el nombre del mes basado en el número
+     */
+    private function obtenerNombreMes($numero_mes)
     {
-        return view('fe_de_vidas.update');
-    }
-
-    public function destroy($id)
-    {
-        return view('fe_de_vidas.destroy');
+        $meses = [
+            '1' => 'Enero',
+            '2' => 'Febrero',
+            '3' => 'Marzo',
+            '4' => 'Abril',
+            '5' => 'Mayo',
+            '6' => 'Junio',
+            '7' => 'Julio',
+            '8' => 'Agosto',
+            '9' => 'Septiembre',
+            '10' => 'Octubre',
+            '11' => 'Noviembre',
+            '12' => 'Diciembre'
+        ];
+        
+        return $meses[$numero_mes] ?? 'Desconocido';
     }
 }

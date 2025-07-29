@@ -12,7 +12,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class FeDeVidasDataTable extends DataTable
+class FeDeVidasGeneralDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -57,7 +57,7 @@ class FeDeVidasDataTable extends DataTable
                 'ubicacion_fisica:id,ubicacion_fisica', 
                 'jefe_inmediato:id,nombre',
                 'registered_by:id,name'
-            ])->where('registered_by', auth()->id());
+            ]);
     }
 
     /**

@@ -393,8 +393,14 @@ return [
                 [
                     'text' => 'Administrar Fe de Vidas',
                     'url' => '/fe_de_vidas',
-                    'icon' => 'fa fa-users-cog',
+                    'icon' => 'fa fa-user-check',
                     'can' => ['create-admin-fe-de-vida', 'edit-admin-fe-de-vida', 'delete-admin-fe-de-vida'],
+                ],
+                [
+                    'text' => 'Administrar Fe de Vidas General',
+                    'url' => '/fe_de_vidas/general',
+                    'icon' => 'fa fa-users-rectangle',
+                    'can' => ['general-fe-de-vida'],
                 ],
             ],
         ],
