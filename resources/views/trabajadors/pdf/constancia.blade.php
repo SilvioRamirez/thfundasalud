@@ -435,7 +435,7 @@
                 <div class="director-name">{{ $jefe_inmediato->nombre }}</div>
                 <p style="margin-bottom: 0.2cm; font-weight: bold; color: #000000;">
                     @if($ubicacion_fisica == 'FUNDASALUD (SEDE)')
-                        DIRECTOR (E) ESTADAL DE TALENTO HUMANO DE LA FUNDACION TRUJILLANA DE LA SALUD DEL ESTADO TRUJILLO
+                        DIRECTOR (E) ESTADAL DE TALENTO HUMANO <br>FUNDACION TRUJILLANA DE LA SALUD DEL ESTADO TRUJILLO
                     @else
                         COORDINADOR (A) DE TALENTO HUMANO DE {{ $ubicacion_fisica }}
                     @endif
