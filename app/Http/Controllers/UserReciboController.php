@@ -14,7 +14,7 @@ class UserReciboController extends Controller
      */
     public function index(TrabajadorsIndividualDataTable $dataTable)
     {
-        $trabajador = Trabajador::where('cedula', auth()->user()->cedula)->first();
+        $trabajador = Trabajador::where('cedula', auth()->user()->cedula)->latest()->first();
 
         if (!$trabajador) {
             abort(403, 'EL USUARIO NO PUEDE REALIZAR ESTA ACCIÓN');
@@ -29,6 +29,5 @@ class UserReciboController extends Controller
         return $dataTable->with('trabajadorId', $trabajadorId)->render('trabajadors.show', compact('trabajador'));
 
     }
-
 
 }

@@ -23,6 +23,9 @@ use App\Http\Controllers\TipoSolicitudController;
 use App\Http\Controllers\SolicitudController;
 use App\Http\Controllers\FeDeVidaController;
 use App\Http\Controllers\DropdownController;
+use App\Http\Controllers\UserConstanciaController;
+use App\Http\Controllers\ConstanciaController;
+use App\Http\Controllers\SettingController;
 
 use App\Mail\ContactanosMailable;
 use Illuminate\Support\Facades\Mail;
@@ -48,6 +51,7 @@ Route::get('contactanos', function (){
 })->name('contactanos');
 
 Route::get('recibopago/verify/{id}/{cedula}/{ano}/{mes}', [ReciboPagoController::class, 'recibo_pago_verify'])->name('recibopago.verify');
+Route::get('constancia/verify/{id}/{cedula}/{ano}/{mes}', [ConstanciaController::class, 'constancia_verify'])->name('constancia.verify');
 
 Route::get('test', fn () => phpinfo());
 
@@ -65,6 +69,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('api/eleccionDelete/{eleccion}',  [EleccionController::class, 'destroy']);
     Route::post('api/tipoSolicitudDelete/{tipoSolicitud}',  [TipoSolicitudController::class, 'destroy']);
     Route::post('api/solicitudDelete/{solicitud}',  [SolicitudController::class, 'destroy']);
+    Route::post('api/settingDelete/{setting}',  [SettingController::class, 'destroy']);
 
     /* Rutas específicas para solicitudes */
     Route::delete('solicitudes/documentos/{documento}', [SolicitudController::class, 'eliminarDocumento'])->name('solicitudes.documentos.destroy');
@@ -80,56 +85,60 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('recibopago/{cedula}/{ano}/{mes}', [ReciboPagoController::class, 'recibo_pago_pdf'])->name('recibopago.pdf');
     Route::get('users/recibos/index', [UserReciboController::class, 'index'])->name('user.recibo.index');
 
+    /* Rutas Constancia de Trabajo */
+    Route::post('constancia/{cedula}', [ConstanciaController::class, 'constancia_pdf'])->name('constancia.pdf');
+    Route::get('users/constancias/index', [UserConstanciaController::class, 'index'])->name('user.constancia.index');
+
     Route::get('/elecciones/{eleccion}/registrar/formulario', [EleccionParticipacionController::class, 'mostrarFormulario'])
-     ->name('elecciones.formulario');
+        ->name('elecciones.formulario');
 
     Route::post('/participacion/register/{eleccion}', [EleccionParticipacionController::class, 'registerParticipacion'])
-     ->name('participacion.register');
+        ->name('participacion.register');
 
     Route::get('/participacion', [EleccionParticipacionController::class, 'index'])->name('participacion.index');
 
     Route::get('/elecciones/{eleccion}/estadisticas', [EleccionParticipacionController::class, 'estadisticas'])
-     ->name('eleccions.estadisticas');
+        ->name('eleccions.estadisticas');
 
     Route::get('/elecciones/{eleccionId}/registros/{userId}', [EleccionParticipacionController::class, 'verRegistrosUsuario'])
-     ->name('eleccion.usuario.registros');
-     
+        ->name('eleccion.usuario.registros');
+
     /* Rutas para exportar a Excel */
     Route::get('/elecciones/{eleccionId}/excel', [EleccionParticipacionController::class, 'exportarExcelGeneral'])
-     ->name('eleccion.excel.general');
-     
+        ->name('eleccion.excel.general');
+
     Route::get('/elecciones/{eleccionId}/usuario/{userId}/excel', [EleccionParticipacionController::class, 'exportarExcelUsuario'])
-     ->name('eleccion.usuario.excel');
+        ->name('eleccion.usuario.excel');
 
     Route::get('/fe_de_vidas/check', [FeDeVidaController::class, 'check'])
-     ->name('fe_de_vidas.check');
+        ->name('fe_de_vidas.check');
 
     Route::post('/fe_de_vidas/check/cedula', [FeDeVidaController::class, 'checkCedula'])
-     ->name('fe_de_vidas.check.cedula');
+        ->name('fe_de_vidas.check.cedula');
 
     Route::get('/fe_de_vidas/create/{trabajador}', [FeDeVidaController::class, 'create'])
-     ->name('fe_de_vidas.create');
+        ->name('fe_de_vidas.create');
 
     Route::post('/fe_de_vidas', [FeDeVidaController::class, 'store'])
-     ->name('fe_de_vidas.store');
+        ->name('fe_de_vidas.store');
 
     Route::get('/fe_de_vidas', [FeDeVidaController::class, 'index'])
-     ->name('fe_de_vidas.index');
+        ->name('fe_de_vidas.index');
 
     Route::get('/fe_de_vidas/general', [FeDeVidaController::class, 'indexGeneral'])
-     ->name('fe_de_vidas.general');
+        ->name('fe_de_vidas.general');
 
     Route::post('/fe_de_vidas/{fe_de_vida}/view', [FeDeVidaController::class, 'viewFeDeVida'])
-     ->name('fe_de_vidas.view');
+        ->name('fe_de_vidas.view');
 
     Route::post('/fe_de_vidas/{fe_de_vida}/confirm', [FeDeVidaController::class, 'confirmFeDeVida'])
-     ->name('fe_de_vidas.confirm');
+        ->name('fe_de_vidas.confirm');
 
     Route::get('api/fetch-parroquias/{municipioId}', [DropdownController::class, 'fetchParroquia'])
-     ->name('fetch.parroquias');
+        ->name('fetch.parroquias');
     
     Route::get('api/fetch-jefe-inmediato/{cedula}', [FeDeVidaController::class, 'fetchJefeInmediato'])
-     ->name('fetch.jefe-inmediato');
+        ->name('fetch.jefe-inmediato');
 
     /* Aquí se agrupan todos los controladores que queramos tener con resources */
     Route::resources([
@@ -143,6 +152,7 @@ Route::group(['middleware' => ['auth']], function() {
         'eleccions'         => EleccionController::class,
         'tipos-solicitud'   => TipoSolicitudController::class,
         'solicitudes'       => SolicitudController::class,
+        'settings'          => SettingController::class,
     ]);
 
 });

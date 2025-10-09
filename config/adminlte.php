@@ -324,13 +324,19 @@ return [
         ], */
         [
             'header' => 'MENU TRABAJADOR',
-            'can' => ['view-trabajador'],
+            'can' => ['view-trabajador', 'view-constancia'],
         ],
         [
             'text' => 'Recibos de Pago',
             'route' => 'user.recibo.index',
             'icon' => 'fa fa-file-invoice',
             'can' => ['view-trabajador'],
+        ],
+        [
+            'text' => 'Constancia de Trabajo',
+            'route' => 'user.constancia.index',
+            'icon' => 'fa fa-file-invoice',
+            'can' => ['view-constancia'],
         ],
         [
             'header' => 'MENU PARTICIPACIÓN',
@@ -437,6 +443,12 @@ return [
                     'url' => '/eleccions',
                     'icon' => 'fa fa-check-to-slot',
                     'can' => ['create-eleccion', 'edit-eleccion', 'delete-eleccion', 'view-eleccion'],
+                ],
+                [
+                    'text' => 'Settings',
+                    'url' => '/settings',
+                    'icon' => 'fa fa-cogs',
+                    'can' => ['create-setting', 'edit-setting', 'delete-setting', 'view-setting'],
                 ],
                 [
                     'text' => 'Log de Actividad',
