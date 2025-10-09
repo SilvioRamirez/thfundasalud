@@ -53,9 +53,9 @@ class ConstanciaController extends Controller
         $pdf = PDF::loadView('trabajadors.pdf.constancia', compact('trabajador', 'fecha', 'ruta', 'turno', 'cantidad_horas', 'ubicacion_fisica', 'jefe_inmediato', 'nota'))
                     ->setPaper('A4','portrait');
 
-        return  $pdf->stream();
+        /* return  $pdf->stream(); */
                     
-        return $pdf->download('Recibo de Pago '.$trabajador->cedula.'_'.$trabajador->primeraQuincena[0]->ano.'_'.$trabajador->primeraQuincena[0]->mes.'.pdf');
+        return $pdf->download('Constancia de Trabajo '.$trabajador->cedula.'_'.$trabajador->primeraQuincena[0]->ano.'_'.$trabajador->primeraQuincena[0]->mes.'.pdf');
     }
 
     public function constancia_verify(string $id, string $cedula, string $ano, string $mes)
@@ -64,7 +64,7 @@ class ConstanciaController extends Controller
         $trabajadorId = Trabajador::where('id', $id)->where('ano', $ano)->where('mes', $mes)->first();
 
         if (!$trabajadorId) {
-            abort(403, 'NO ES POSIBLE VERIFICAR ESTE RECIBO DE PAGO');
+            abort(403, 'NO ES POSIBLE VERIFICAR ESTE CONSTANCIA DE TRABAJO');
         }
 
         // Buscar el trabajador por cédula
