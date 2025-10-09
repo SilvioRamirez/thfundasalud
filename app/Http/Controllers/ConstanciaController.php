@@ -95,7 +95,7 @@ class ConstanciaController extends Controller
 
         $totalAsignaciones = $primeraQuincena->total_asignaciones + $segundaQuincena->total_asignaciones;
 
-        return view('trabajadors.web_consulta', compact('trabajadorCedula', 'primeraQuincena', 'totalAsignaciones'));
+        return view('trabajadors.web_consulta_constancia', compact('trabajadorCedula', 'primeraQuincena', 'totalAsignaciones'));
 
     }
 }
