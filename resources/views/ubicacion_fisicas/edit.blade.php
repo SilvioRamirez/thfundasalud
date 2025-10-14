@@ -25,17 +25,62 @@
                     <div class="mb-3 row">
                         <label for="ubicacion_fisica" class="col-md-4 col-form-label text-md-end text-start">Ubicación Física</label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control @error('ubicacion_fisica') is-invalid @enderror" id="ubicacion_fisica" name="ubicacion_fisica" value="{{ $ubicacionFisica->ubicacion_fisica }}">
+                            <input type="text" class="form-control @error('ubicacion_fisica') is-invalid @enderror" id="ubicacion_fisica" name="ubicacion_fisica" value="{{ old('ubicacion_fisica', $ubicacionFisica->ubicacion_fisica) }}">
                             @error('ubicacion_fisica')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="coordinador" class="col-md-4 col-form-label text-md-end text-start">Nombres y Apellidos del Coordinador</label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control @error('coordinador') is-invalid @enderror" id="coordinador" name="coordinador" value="{{ old('coordinador', $ubicacionFisica->coordinador) }}">
+                            @error('coordinador')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
 
                     <div class="mb-3 row">
+                        <label for="titulo" class="col-md-4 col-form-label text-md-end text-start">Título del Coordinador</label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control @error('titulo') is-invalid @enderror" id="titulo" name="titulo" value="{{ old('titulo', $ubicacionFisica->titulo) }}">
+                            @error('titulo')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="cedula" class="col-md-4 col-form-label text-md-end text-start">Cédula del Coordinador</label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control @error('cedula') is-invalid @enderror" id="cedula" name="cedula" value="{{ old('cedula', $ubicacionFisica->cedula) }}">
+                            @error('cedula')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="telefono" class="col-md-4 col-form-label text-md-end text-start">Teléfono del Coordinador</label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control @error('telefono') is-invalid @enderror" id="telefono" name="telefono" value="{{ old('telefono', $ubicacionFisica->telefono) }}">
+                            @error('telefono')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="correo" class="col-md-4 col-form-label text-md-end text-start">Correo de la Coordinación</label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control @error('correo') is-invalid @enderror" id="correo" name="correo" value="{{ old('correo', $ubicacionFisica->correo) }}">
+                            @error('correo')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
                         <label for="text" class="col-md-4 col-form-label text-md-end text-start">Observación</label>
                         <div class="col-md-6">
-                            <input type="observacion" class="form-control @error('observacion') is-invalid @enderror" id="observacion" name="observacion" value="{{ $ubicacionFisica->observacion }}">
+                            <input type="observacion" class="form-control @error('observacion') is-invalid @enderror" id="observacion" name="observacion" value="{{ old('observacion', $ubicacionFisica->observacion) }}">
                             @error('observacion')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror

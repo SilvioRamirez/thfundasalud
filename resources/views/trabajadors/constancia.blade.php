@@ -141,15 +141,6 @@
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="cantidad_horas" class="col-md-4 col-form-label text-md-end text-start">Cantidad de Horas por semana</label>
-                        <div class="col-md-6">
-                            <input type="number" name="cantidad_horas" id="cantidad_horas" class="form-control" pattern="^[0-9]+$" required min="1" max="120" step="1">
-                            @error('cantidad_horas')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
                         <label for="ubicacion_fisica" class="col-md-4 col-form-label text-md-end text-start">Ubicación
                             Física</label>
                         <div class="col-md-6">
@@ -165,32 +156,6 @@
                             </select>
 
                             @error('ubicacion_fisica')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="jefe_inmediato_search" class="col-md-4 col-form-label text-md-end text-start">Jefe
-                            de RRHH (Cedula)</label>
-                        <div class="col-md-6">
-                            <div class="input-group">
-                                <input type="text" class="form-control @error('jefe_inmediato_search') is-invalid @enderror"
-                                    id="jefe_inmediato_search" name="jefe_inmediato_search" placeholder="000000000" required>
-                                <button type="button" class="btn btn-primary" onclick="fetchJefeInmediato()">Buscar</button>
-                            </div>
-                            @error('jefe_inmediato_search')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="jefe_inmediato" class="col-md-4 col-form-label text-md-end text-start">Jefe de RRHH
-                            Nombres y Apellidos</label>
-                        <div class="col-md-6">
-                            <input type="text" disabled class="form-control @error('jefe_inmediato') is-invalid @enderror"
-                                id="jefe_inmediato" name="jefe_inmediato" required>
-                            <input type="hidden" id="jefe_inmediato_id" name="jefe_inmediato_id">
-                            @error('jefe_inmediato')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>

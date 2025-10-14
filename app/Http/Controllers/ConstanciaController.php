@@ -42,18 +42,16 @@ class ConstanciaController extends Controller
         $fecha = now();
 
         $turno = $request->turno;
-        $cantidad_horas = $request->cantidad_horas;
-        $ubicacion_fisica = $request->ubicacion_fisica;
-        $jefe_inmediato = Trabajador::find($request->jefe_inmediato_id);
+        $ubicacion_fisica = UbicacionFisica::where('ubicacion_fisica', $request->ubicacion_fisica)->first();
         $nota = $request->nota;
 
         // Preparar la ruta del codigo qr
         $ruta = route('constancia.verify', [$trabajador->id, $trabajador->cedula, $trabajador->primeraQuincena[0]->ano, $trabajador->primeraQuincena[0]->mes]);
 
-        $pdf = PDF::loadView('trabajadors.pdf.constancia', compact('trabajador', 'fecha', 'ruta', 'turno', 'cantidad_horas', 'ubicacion_fisica', 'jefe_inmediato', 'nota'))
+        $pdf = PDF::loadView('trabajadors.pdf.constancia', compact('trabajador', 'fecha', 'ruta', 'turno', 'ubicacion_fisica', 'nota'))
                     ->setPaper('A4','portrait');
 
-        /* return  $pdf->stream(); */
+        return  $pdf->stream();
                     
         return $pdf->download('Constancia de Trabajo '.$trabajador->cedula.'_'.$trabajador->primeraQuincena[0]->ano.'_'.$trabajador->primeraQuincena[0]->mes.'.pdf');
     }

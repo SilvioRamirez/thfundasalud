@@ -410,16 +410,16 @@
         <div class="text-justify font-16" style="margin-bottom: 0.8cm;">
             <p style="margin-bottom: 0.5cm; line-height: 1.8;">
                 Quien suscribe, <strong style="color: #000000;">
-                @if($ubicacion_fisica == 'FUNDASALUD (SEDE)')
+                @if($ubicacion_fisica->ubicacion_fisica == 'FUNDASALUD (SEDE)')
                     DIRECTOR (E) ESTADAL DE TALENTO HUMANO DE LA FUNDACION TRUJILLANA DE LA SALUD DEL ESTADO TRUJILLO
                 @else
-                    COORDINADOR (A) DE TALENTO HUMANO DE {{ $ubicacion_fisica }}
+                    COORDINADOR (A) DE TALENTO HUMANO DE {{ $ubicacion_fisica->ubicacion_fisica }}
                 @endif
                 </strong>, hace constar que el ciudadano: <strong style="color: #000000;">{{$trabajador->nombre}}</strong>, 
                 titular de la <strong>C.I. {{ $trabajador->cedula }}</strong>, presta sus servicios en este organismo desde el <strong>{{$trabajador->fecha_ingreso}}</strong>
                 hasta la presente fecha desempeñándose como: <strong style="color: #000000;">{{$trabajador->cargo}}</strong> en la <strong>FUNDACION TRUJILLANA DE LA SALUD</strong>
-                estado Trujillo. Con financiamiento por el Presupuesto del Ministerio del Poder Popular para la Salud dicho trabajador(a) tiene una carga horaria de <strong>{{ $cantidad_horas }} horas</strong>
-                en turno <strong>{{ $turno }}</strong>. Devengando un sueldo mensual de <strong style="color: #000000;">{{ numero_a_letras($trabajador->segundaQuincena[0]->total_asignaciones + $trabajador->primeraQuincena[0]->total_asignaciones)}} (BS. {{ formatear_moneda($trabajador->segundaQuincena[0]->total_asignaciones + $trabajador->primeraQuincena[0]->total_asignaciones)}})</strong>.
+                estado Trujillo. Con financiamiento por el Presupuesto del Ministerio del Poder Popular para la Salud.
+                En turno <strong>{{ $turno }}</strong>. Devengando un sueldo mensual de <strong style="color: #000000;">{{ numero_a_letras($trabajador->segundaQuincena[0]->total_asignaciones + $trabajador->primeraQuincena[0]->total_asignaciones)}} (BS. {{ formatear_moneda($trabajador->segundaQuincena[0]->total_asignaciones + $trabajador->primeraQuincena[0]->total_asignaciones)}})</strong>.
             </p>
         </div>
 
@@ -432,15 +432,15 @@
         <!-- Sección de firma con QR code -->
         <div class="firma-section">
             <div class="firma-info">
-                <div class="director-name">{{ $jefe_inmediato->nombre }}</div>
+                <div class="director-name">{{ $ubicacion_fisica->titulo }} {{ $ubicacion_fisica->coordinador }}</div>
                 <p style="margin-bottom: 0.2cm; font-weight: bold; color: #000000;">
-                    @if($ubicacion_fisica == 'FUNDASALUD (SEDE)')
+                    @if($ubicacion_fisica->ubicacion_fisica == 'FUNDASALUD (SEDE)')
                         DIRECTOR (E) ESTADAL DE TALENTO HUMANO <br>FUNDACION TRUJILLANA DE LA SALUD DEL ESTADO TRUJILLO
                     @else
-                        COORDINADOR (A) DE TALENTO HUMANO DE {{ $ubicacion_fisica }}
+                        COORDINADOR (A) DE TALENTO HUMANO <br> {{ $ubicacion_fisica->ubicacion_fisica }}
                     @endif
                 </p>
-                <p style="margin-bottom: 0.2cm; color: #495057;">{{ $ubicacion_fisica }}</p>
+                <p style="margin-bottom: 0.2cm; color: #495057;">{{ $ubicacion_fisica->correo }}</p>
                 <br>
                 <br>
 
@@ -450,8 +450,9 @@
                 <div style="border-top: 1px solid #dee2e6; padding-top: 0.3cm; margin-top: 0.3cm;">
                     {{-- <p style="margin-bottom: 0.1cm; font-size: 7px; text-align: left; color: #6c757d;">RC/ac</p> --}}
                     <div style="font-size: 8px; line-height: 1.2; color: #6c757d;">
-                        <p style="margin-bottom: 0.05cm;">{{Setting::get('direccion_fiscal')}} RIF {{Setting::get('rif')}}</p>
-                        <p>Correo electrónico: {{Setting::get('email')}}</p>
+                        {{-- <p style="margin-bottom: 0.05cm;">{{Setting::get('direccion_fiscal')}} RIF {{Setting::get('rif')}}</p> --}}
+                        <p>Para verificación de la constancia, escanear el código QR o comunicarse al correo electrónico:</p>
+                        <p>{{ $ubicacion_fisica->correo }}</p>
                     </div>
                 </div>
             </div>

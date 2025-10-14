@@ -23,7 +23,7 @@ class UserConstanciaController extends Controller
             abort(403, 'HA OCURRIDO UN ERROR AL INTENTAR PROCESAR LA INFORMACIÓN, POR FAVOR CONSULTE SU ESTATUS CON SU COORDINACIÓN DE ADMINISTRACIÓN DE TALENTO HUMANO');
         }
 
-        $ubicacion_fisicas = UbicacionFisica::all();
+        $ubicacion_fisicas = UbicacionFisica::where('constancia', true)->get();
         
         return view('trabajadors.constancia', compact('trabajador', 'ubicacion_fisicas'));
 
