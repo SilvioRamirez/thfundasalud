@@ -51,7 +51,7 @@ class ConstanciaController extends Controller
         $pdf = PDF::loadView('trabajadors.pdf.constancia', compact('trabajador', 'fecha', 'ruta', 'turno', 'ubicacion_fisica', 'nota'))
                     ->setPaper('A4','portrait');
 
-        return  $pdf->stream();
+        /* return  $pdf->stream(); */
                     
         return $pdf->download('Constancia de Trabajo '.$trabajador->cedula.'_'.$trabajador->primeraQuincena[0]->ano.'_'.$trabajador->primeraQuincena[0]->mes.'.pdf');
     }
