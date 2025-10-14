@@ -76,6 +76,15 @@
                         </div>
                     </div>
                     <div class="mb-3 row">
+                        <label for="constancia" class="col-md-4 col-form-label text-md-end text-start">Genera Constancia</label>
+                        <div class="col-md-6">
+                            <input type="checkbox" class="mt-2 form-check-input @error('constancia') is-invalid @enderror" id="constancia" name="constancia" value="1" checked>
+                            @error('constancia')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
                         <label for="text" class="col-md-4 col-form-label text-md-end text-start">Observación</label>
                         <div class="col-md-6">
                             <input type="observacion" class="form-control @error('observacion') is-invalid @enderror" id="observacion" name="observacion" value="{{ old('observacion') }}">

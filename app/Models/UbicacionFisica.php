@@ -21,6 +21,12 @@ class UbicacionFisica extends Model
 
     protected $fillable = [
         'ubicacion_fisica',
+        'coordinador',
+        'titulo',
+        'cedula',
+        'telefono',
+        'correo',
+        'constancia',
         'observacion'
     ];
     
