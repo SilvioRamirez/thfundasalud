@@ -126,8 +126,8 @@
                                 <option value="" selected disabled>--- Seleccione ---</option>
                                 <option value="TRÁMITE BANCARIO">TRÁMITE BANCARIO</option>
                                 <option value="TRÁMITE PERSONAL">TRÁMITE PERSONAL</option>
-                                <option value="TRÁMITE IVS">TRÁMITE IVS</option>
-                                <option value="TRAMITE POAV">TRAMITE POAV</option>
+                                <option value="TRÁMITE IVSS">TRÁMITE IVSS</option>
+                                <option value="TRAMITE FAOV">TRAMITE FAOV</option>
                                 <option value="OTROS TRÁMITES">OTROS TRÁMITES</option>
                             </select>
                         </div>

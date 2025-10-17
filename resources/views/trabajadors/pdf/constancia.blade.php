@@ -166,7 +166,7 @@
             margin-right: 0cm;
             /* background: white; */
             padding: 0.8cm;
-           /*  border: 1px solid #e8e8e8; */
+            /*  border: 1px solid #e8e8e8; */
             position: relative;
             /* border-radius: 10px; */
         }
@@ -400,33 +400,46 @@
             <p class="encabezado-fuente"><strong>FUNDACIÓN TRUJILLANA DE LA SALUD</strong></p>
             <p class="encabezado-fuente"><strong>DIRECCIÓN ESTADAL DE RECURSOS HUMANOS</strong></p>
             <p class="encabezado-fuente"><strong>TRUJILLO ESTADO TRUJILLO</strong></p>
+            <p class="encabezado-fuente"><strong>RIF {{Setting::get('rif')}}</p></strong></p>
         </div>
-        <img class="imgTable" src="{{public_path('storage/img/fundasalud.png')}}">
+        <img class="imgTable" src="{{public_path('storage/img/minsalud.jpg')}}">
     </div>
 
     <div class="constancia-content">
         <h2 class="text-center titulo-fuente">CONSTANCIA</h2>
-        
+
         <div class="text-justify font-16" style="margin-bottom: 0.8cm;">
             <p style="margin-bottom: 0.5cm; line-height: 1.8;">
                 Quien suscribe, <strong style="color: #000000;">
-                @if($ubicacion_fisica->ubicacion_fisica == 'FUNDASALUD (SEDE)')
-                    DIRECTOR (E) ESTADAL DE TALENTO HUMANO DE LA FUNDACION TRUJILLANA DE LA SALUD DEL ESTADO TRUJILLO
-                @else
-                    COORDINADOR (A) DE TALENTO HUMANO DE {{ $ubicacion_fisica->ubicacion_fisica }}
-                @endif
-                </strong>, hace constar que el ciudadano: <strong style="color: #000000;">{{$trabajador->nombre}}</strong>, 
-                titular de la <strong>C.I. {{ $trabajador->cedula }}</strong>, presta sus servicios en este organismo desde el <strong>{{$trabajador->fecha_ingreso}}</strong>
-                hasta la presente fecha desempeñándose como: <strong style="color: #000000;">{{$trabajador->cargo}}</strong> en la <strong>FUNDACION TRUJILLANA DE LA SALUD</strong>
+                    @if($ubicacion_fisica->ubicacion_fisica == 'FUNDASALUD (SEDE)')
+                        DIRECTOR (E) ESTADAL DE TALENTO HUMANO DE LA FUNDACION TRUJILLANA DE LA SALUD DEL ESTADO TRUJILLO
+                    @else
+                        COORDINADOR (A) DE TALENTO HUMANO DE {{ $ubicacion_fisica->ubicacion_fisica }}
+                    @endif
+                </strong>, hace constar que el ciudadano: <strong
+                    style="color: #000000;">{{$trabajador->nombre}}</strong>,
+                titular de la <strong>C.I. {{ $trabajador->cedula }}</strong>, presta sus servicios en este organismo
+                desde el <strong>{{$trabajador->fecha_ingreso}}</strong>
+                hasta la presente fecha desempeñándose como: <strong
+                    style="color: #000000;">{{$trabajador->cargo}}</strong> en la <strong>FUNDACION TRUJILLANA DE LA
+                    SALUD</strong>
                 estado Trujillo. Con financiamiento por el Presupuesto del Ministerio del Poder Popular para la Salud.
-                En turno <strong>{{ $turno }}</strong>. Devengando un sueldo mensual de <strong style="color: #000000;">{{ numero_a_letras($trabajador->segundaQuincena[0]->total_asignaciones + $trabajador->primeraQuincena[0]->total_asignaciones)}} (BS. {{ formatear_moneda($trabajador->segundaQuincena[0]->total_asignaciones + $trabajador->primeraQuincena[0]->total_asignaciones)}})</strong>.
+                En turno <strong>{{ $turno }}</strong>. Devengando un sueldo mensual de <strong
+                    style="color: #000000;">{{ numero_a_letras($trabajador->segundaQuincena[0]->total_asignaciones + $trabajador->primeraQuincena[0]->total_asignaciones)}}
+                    (BS.
+                    {{ formatear_moneda($trabajador->segundaQuincena[0]->total_asignaciones + $trabajador->primeraQuincena[0]->total_asignaciones)}})</strong>.
             </p>
         </div>
 
-        <p class="font-16" style="margin-bottom: 0.5cm; text-align: center; font-weight: bold; background: #fff3cd; padding: 0.2cm; border: 1px solid #ffc107;"><strong>NOTA: {{ $nota }}</strong></p>
-        
+        <p class="font-16"
+            style="margin-bottom: 0.5cm; text-align: center; font-weight: bold; background: #fff3cd; padding: 0.2cm; border: 1px solid #ffc107;">
+            <strong>NOTA: {{ $nota }}</strong>
+        </p>
+
         <p class="font-16" style="margin-bottom: 0.8cm; line-height: 1.6; font-style: italic;">
-            Constancia que se expide en la ciudad de Trujillo, a los <strong>{{$fecha->format('d')}}</strong> días del mes de <strong>{{$mes}}</strong> de <strong>{{$fecha->format('Y')}}</strong>. Válida por <strong>un (1) mes</strong>.
+            Constancia que se expide en la ciudad de Trujillo, a los <strong>{{$fecha->format('d')}}</strong> días del
+            mes de <strong>{{$mes}}</strong> de <strong>{{$fecha->format('Y')}}</strong>. Válida por <strong>un (1)
+                mes</strong>.
         </p>
 
         <!-- Sección de firma con QR code -->
@@ -435,30 +448,37 @@
                 <div class="director-name">{{ $ubicacion_fisica->titulo }} {{ $ubicacion_fisica->coordinador }}</div>
                 <p style="margin-bottom: 0.2cm; font-weight: bold; color: #000000;">
                     @if($ubicacion_fisica->ubicacion_fisica == 'FUNDASALUD (SEDE)')
-                        DIRECTOR (E) ESTADAL DE TALENTO HUMANO <br>FUNDACION TRUJILLANA DE LA SALUD DEL ESTADO TRUJILLO
+                        DIRECTOR ESTADAL DE TALENTO HUMANO <br> FUNDACION TRUJILLANA DE LA SALUD DEL ESTADO TRUJILLO <br>
                     @else
                         COORDINADOR (A) DE TALENTO HUMANO <br> {{ $ubicacion_fisica->ubicacion_fisica }}
+                    @endif
+                    @if($ubicacion_fisica->ubicacion_fisica == 'FUNDASALUD (SEDE)')
+                        DESIGNACIÓN {{Setting::get('designacion_director_talento_humano')}} <br>
+                        RESOLUCIÓN {{Setting::get('resolucion_director_talento_humano')}} <br>
+                        SUSCRITA POR LA MINISTRA DEL PODER POPULAR PARA LA SALUD
                     @endif
                 </p>
                 <p style="margin-bottom: 0.2cm; color: #495057;">{{ $ubicacion_fisica->correo }}</p>
                 <br>
                 <br>
 
-                {{-- <p style="margin-bottom: 0.2cm; color: #495057;">RESOLUCIÓN {{Setting::get('resolucion_director_talento_humano')}}</p>
-                <p style="margin-bottom: 0.4cm; color: #495057;">SUSCRITA POR LA MINISTRA DEL PODER POPULAR PARA LA SALUD</p> --}}
-                
+
                 <div style="border-top: 1px solid #dee2e6; padding-top: 0.3cm; margin-top: 0.3cm;">
-                    {{-- <p style="margin-bottom: 0.1cm; font-size: 7px; text-align: left; color: #6c757d;">RC/ac</p> --}}
+                    {{-- <p style="margin-bottom: 0.1cm; font-size: 7px; text-align: left; color: #6c757d;">RC/ac</p>
+                    --}}
                     <div style="font-size: 8px; line-height: 1.2; color: #6c757d;">
-                        {{-- <p style="margin-bottom: 0.05cm;">{{Setting::get('direccion_fiscal')}} RIF {{Setting::get('rif')}}</p> --}}
-                        <p>Para verificación de la constancia, escanear el código QR o comunicarse al correo electrónico:</p>
+                        {{-- <p style="margin-bottom: 0.05cm;">{{Setting::get('direccion_fiscal')}} RIF
+                            {{Setting::get('rif')}}</p> --}}
+                        <p>Para verificación de la constancia, escanear el código QR o comunicarse al correo
+                            electrónico:</p>
                         <p>{{ $ubicacion_fisica->correo }}</p>
                     </div>
                 </div>
             </div>
-            
+
             <div class="qr-container">
-                <img class="qr-code" src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(80)->generate($ruta)) !!} ">
+                <img class="qr-code"
+                    src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(80)->generate($ruta)) !!} ">
             </div>
         </div>
     </div>
