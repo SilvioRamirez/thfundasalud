@@ -469,9 +469,10 @@
                     <div style="font-size: 8px; line-height: 1.2; color: #6c757d;">
                         {{-- <p style="margin-bottom: 0.05cm;">{{Setting::get('direccion_fiscal')}} RIF
                             {{Setting::get('rif')}}</p> --}}
-                        <p>Para verificación de la constancia, escanear el código QR o comunicarse al correo
-                            electrónico:</p>
-                        <p>{{ $ubicacion_fisica->correo }}</p>
+                        <p>Esta constancia no es válida sin la firma y sello húmedo de la autoridad correspondiente.
+                            <br>
+                            Para verificación de la constancia, escanear el código QR o comunicarse al correo
+                            electrónico: <strong>{{ $ubicacion_fisica->correo }}</strong></p>
                     </div>
                 </div>
             </div>
