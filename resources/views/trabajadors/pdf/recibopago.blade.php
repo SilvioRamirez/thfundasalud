@@ -503,6 +503,12 @@
                         <td class="" style="text-align: right;">{{ formatear_moneda($trabajador->primeraQuincena[0]->bono_de_uniformes)}}</td>
                     </tr>
                 @endif
+                @if ($trabajador->primeraQuincena[0]->aguinaldos != 0)
+                    <tr>
+                        <td class=""><strong>AGUINALDOS:</strong></td>
+                        <td class="" style="text-align: right;">{{ formatear_moneda($trabajador->primeraQuincena[0]->aguinaldos)}}</td>
+                    </tr>
+                @endif
 
                 {{-- Segunda Quincena --}}
 
