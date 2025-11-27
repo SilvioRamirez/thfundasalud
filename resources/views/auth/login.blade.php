@@ -379,7 +379,8 @@
         <div class="login-right">
             <div class="login-form-container">
                 <div class="login-header">
-                    <h2>Iniciar Sesión</h2>
+                    <img src="{{ asset('storage/img/fundasalud.png') }}" alt="Fundasalud Trujillo" class="img-fluid d-xl-none d-lg-none .d-xl-block" style="max-width: 150px;">
+                    <h2 class="mt-2">Iniciar Sesión</h2>
                     <p>Ingresa tus credenciales para continuar</p>
                 </div>
                 
