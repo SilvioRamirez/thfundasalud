@@ -23,12 +23,16 @@ class TrabajadorsIndividualDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->editColumn('ano', function ($trabajador) {
+                // Asegurar que sea un número entero para el ordenamiento
+                $ano = (int)$trabajador->ano;
                 // Agregar atributo data-order para ordenamiento numérico
-                return '<span data-order="' . (int)$trabajador->ano . '">' . $trabajador->ano . '</span>';
+                return '<span data-order="' . $ano . '">' . $trabajador->ano . '</span>';
             })
             ->editColumn('mes', function ($trabajador) {
+                // Asegurar que sea un número entero para el ordenamiento
+                $mes = (int)$trabajador->mes;
                 // Agregar atributo data-order para ordenamiento numérico
-                return '<span data-order="' . (int)$trabajador->mes . '">' . $trabajador->mes . '</span>';
+                return '<span data-order="' . $mes . '">' . $trabajador->mes . '</span>';
             })
             ->addColumn('primera_quincena', function ($trabajador) {
                 // Verificar si existen registros tanto en primera como en segunda quincena
@@ -60,15 +64,19 @@ class TrabajadorsIndividualDataTable extends DataTable
      */
     public function query(Trabajador $model): QueryBuilder
     {
+        $query = $model->newQuery();
+        
         if($this->trabajadorId) {
             // Primero obtenemos la cédula del trabajador usando el ID
             $cedula = Trabajador::where('id', $this->trabajadorId)->value('cedula');
             // Luego filtramos por esa cédula
-            return $model->newQuery()->where('cedula', $cedula);
+            $query->where('cedula', $cedula);
         }
 
-        // Si no se proporciona un ID, devolver todos los registros
-        return $model->newQuery();
+        // Ordenar por año y mes numéricamente en el servidor
+        $query->orderByRaw('CAST(ano AS UNSIGNED) DESC, CAST(mes AS UNSIGNED) DESC');
+
+        return $query;
     }
 
     /**
@@ -94,6 +102,14 @@ class TrabajadorsIndividualDataTable extends DataTable
                     ])
                     ->buttons([
                         Button::make('reload')
+                    ])
+                    ->parameters([
+                        'columnDefs' => [
+                            [
+                                'type' => 'num',
+                                'targets' => [0, 1] // Año y Mes son numéricos
+                            ]
+                        ]
                     ]);
     }
 

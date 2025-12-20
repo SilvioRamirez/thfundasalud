@@ -125,4 +125,23 @@
 
 @push('scripts')
     {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Esperar a que DataTable se inicialice
+            setTimeout(function() {
+                var table = $('#trabajadorsindividual-table').DataTable();
+                
+                // Configurar ordenamiento numérico para las columnas de año y mes
+                $.fn.dataTable.ext.type.order['num-pre'] = function(data) {
+                    // Convertir a número, manejar valores vacíos
+                    var num = parseFloat(data) || 0;
+                    return num;
+                };
+                
+                // Forzar reordenamiento inicial
+                table.order([0, 'desc'], [1, 'desc']).draw();
+            }, 500);
+        });
+    </script>
 @endpush
