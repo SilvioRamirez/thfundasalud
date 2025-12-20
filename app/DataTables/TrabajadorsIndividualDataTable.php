@@ -22,6 +22,14 @@ class TrabajadorsIndividualDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
+            ->editColumn('ano', function ($trabajador) {
+                // Agregar atributo data-order para ordenamiento numérico
+                return '<span data-order="' . (int)$trabajador->ano . '">' . $trabajador->ano . '</span>';
+            })
+            ->editColumn('mes', function ($trabajador) {
+                // Agregar atributo data-order para ordenamiento numérico
+                return '<span data-order="' . (int)$trabajador->mes . '">' . $trabajador->mes . '</span>';
+            })
             ->addColumn('primera_quincena', function ($trabajador) {
                 // Verificar si existen registros tanto en primera como en segunda quincena
                 $existePrimeraQuincena = $trabajador->primeraQuincena()
@@ -43,7 +51,7 @@ class TrabajadorsIndividualDataTable extends DataTable
 
                 return ''; // No mostrar el botón si falta alguna quincena
             })
-            ->rawColumns(['primera_quincena'])
+            ->rawColumns(['ano', 'mes', 'primera_quincena'])
             ->setRowId('id');
     }
 
@@ -95,9 +103,19 @@ class TrabajadorsIndividualDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('ano')->title('Año')->addClass('text-center'),
-            Column::make('mes')->title('Mes')->addClass('text-center'),
-            Column::make('primera_quincena')->title('Descargar')->addClass('text-center'),
+            Column::make('ano')
+                ->title('Año')
+                ->addClass('text-center')
+                ->orderable(true),
+            Column::make('mes')
+                ->title('Mes')
+                ->addClass('text-center')
+                ->orderable(true),
+            Column::make('primera_quincena')
+                ->title('Descargar')
+                ->addClass('text-center')
+                ->orderable(false)
+                ->searchable(false),
         ];
     }
 
