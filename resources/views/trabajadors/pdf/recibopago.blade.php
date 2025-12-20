@@ -636,9 +636,24 @@
                         <td class="" style="text-align: right;">{{ formatear_moneda($trabajador->segundaQuincena[0]->bono_de_uniformes) }}</td>
                     </tr>
                 @endif
-
-
-
+                @if ($trabajador->segundaQuincena[0]->retroactivo_mes_en_curso != 0)
+                    <tr>
+                        <td class=""><strong>RETROACTIVO MES EN CURSO:</strong></td>
+                        <td class="" style="text-align: right;">{{ formatear_moneda($trabajador->segundaQuincena[0]->retroactivo_mes_en_curso) }}</td>
+                    </tr>
+                @endif
+                @if ($trabajador->segundaQuincena[0]->aguinaldos != 0)
+                    <tr>
+                        <td class=""><strong>AGUINALDOS:</strong></td>
+                        <td class="" style="text-align: right;">{{ formatear_moneda($trabajador->segundaQuincena[0]->aguinaldos) }}</td>
+                    </tr>
+                @endif
+                @if ($trabajador->segundaQuincena[0]->bono_dia_del_obrero != 0)
+                    <tr>
+                        <td class=""><strong>BONO DIA DEL OBRERO:</strong></td>
+                        <td class="" style="text-align: right;">{{ formatear_moneda($trabajador->segundaQuincena[0]->bono_dia_del_obrero) }}</td>
+                    </tr>
+                @endif
             </tbody>
         </table>
 
