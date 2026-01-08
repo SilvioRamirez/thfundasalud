@@ -119,34 +119,41 @@
                     @endcan
                 </h2>
 
+                @php
+                    $anoActual = \Carbon\Carbon::now()->year;
+                    $anoAnterior = $anoActual - 1;
+                @endphp
+                
                 <div class="row">
-                    <div class="col-md- {{ auth()->user()->can('view-arc') ? '6' : '12' }}">
+                    <div class="col-md-{{ auth()->user()->can('view-arc') ? '6' : '12' }}">
                         {{ $dataTable->table() }}
                     </div>
-                        @php
-                            use Carbon\Carbon;
-                            $anoActual = Carbon::now()->year;
-                            $anoAnterior = $anoActual - 1;
-                        @endphp
+                    
                     @can('view-arc')
-                    <div class="col-md-6">
-                        <div class="row justify-content-center">
-                                <div class="col-md-8 mb-3">
-                                    <div class="card text-center h-100">
-                                        <div class="card-body">
-                                            <h3 class="text-center">{{ $anoAnterior }}</h3>
-                                            <p class="card-text">Planilla ARC</p>
-                                            <a href="{{ route('recibo.arc.pdf', [$trabajador->cedula, $anoAnterior]) }}" 
-                                                class="btn btn-success btn-lg">
-                                                <i class="fa fa-download"></i> Descargar
-                                            </a>
-                                        </div>
+                        <div class="col-md-6">
+                            <div class="card border-success shadow-sm h-100">
+                                <div class="card-header bg-success text-white text-center">
+                                    <h4 class="mb-0"><i class="fa fa-file-invoice"></i> Planilla ARC</h4>
+                                    <small>Anticipos de Renta Consolidada</small>
+                                </div>
+                                <div class="card-body text-center d-flex flex-column justify-content-center">
+                                    <div class="mb-4">
+                                        <i class="fa fa-calendar-alt fa-3x text-success mb-3"></i>
+                                        <h2 class="text-primary mb-2">Año {{ $anoAnterior }}</h2>
+                                        <p class="text-muted">Consolidado anual de asignaciones y deducciones de ley</p>
                                     </div>
+                                    <a href="{{ route('recibo.arc.pdf', [$trabajador->cedula, $anoAnterior]) }}" 
+                                       class="btn btn-success btn-lg">
+                                        <i class="fa fa-download"></i> Descargar Planilla ARC
+                                    </a>
+                                    <small class="text-muted mt-3">
+                                        <i class="fa fa-info-circle"></i> Incluye deducciones: SSO, Paro Forzoso, FAOV, Fondo Jubilación
+                                    </small>
                                 </div>
                             </div>
                         </div>
+                    @endcan
                 </div>
-                @endcan
             </div>
         </div>
     </div>
