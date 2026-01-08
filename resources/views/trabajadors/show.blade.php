@@ -113,13 +113,14 @@
                     </div>
                 </div>
                 <hr>
-                <h2 class="text-center mb-4">Recibos de Pago y Planilla ARC</h2>
+                <h2 class="text-center mb-4">Recibos de Pago @can('view-arc') y Planilla ARC @endcan</h2>
 
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-{{ can('view-arc') ? '6' : '12' }}">
                         {{ $dataTable->table() }}
                     </div>
-                    <div class="col-md-6">
+                    @can('view-arc')
+                    <div class="col-md-{{ can('view-arc') ? '6' : '12' }}">
                         @php
                             use Carbon\Carbon;
                             $anoActual = Carbon::now()->year;
@@ -141,7 +142,7 @@
                             </div>
                         </div>
                 </div>
-
+                @endcan
             </div>
         </div>
     </div>
