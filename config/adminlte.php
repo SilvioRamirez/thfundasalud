@@ -324,7 +324,7 @@ return [
         ], */
         [
             'header' => 'MENU TRABAJADOR',
-            'can' => ['view-trabajador', 'view-constancia'],
+            'can' => ['view-trabajador', 'view-constancia', 'view-arc'],
         ],
         [
             'text' => 'Recibos de Pago',
@@ -336,7 +336,7 @@ return [
             'text' => 'Recibos ARC',
             'route' => 'user.recibo.arc.index',
             'icon' => 'fa fa-receipt',
-            'can' => ['view-trabajador'],
+            'can' => ['view-arc'],
         ],
         [
             'text' => 'Constancia de Trabajo',
