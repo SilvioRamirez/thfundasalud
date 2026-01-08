@@ -120,7 +120,7 @@
                 </h2>
 
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md- {{ auth()->user()->can('view-arc') ? '6' : '12' }}">
                         {{ $dataTable->table() }}
                     </div>
                         @php
