@@ -93,7 +93,7 @@ class ReciboArcController extends Controller
             'ano'
         ))->setPaper('A4', 'portrait');
 
-        return  $pdf->stream();
+        //return  $pdf->stream();
 
         return $pdf->download('Planilla ARC ' . $trabajador->cedula . '_' . $ano . '.pdf');
     }
