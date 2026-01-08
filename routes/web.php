@@ -26,6 +26,8 @@ use App\Http\Controllers\DropdownController;
 use App\Http\Controllers\UserConstanciaController;
 use App\Http\Controllers\ConstanciaController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\ReciboArcController;
+use App\Http\Controllers\UserReciboArcController;
 
 use App\Mail\ContactanosMailable;
 use Illuminate\Support\Facades\Mail;
@@ -52,6 +54,7 @@ Route::get('contactanos', function (){
 
 Route::get('recibopago/verify/{id}/{cedula}/{ano}/{mes}', [ReciboPagoController::class, 'recibo_pago_verify'])->name('recibopago.verify');
 Route::get('constancia/verify/{id}/{cedula}/{ano}/{mes}', [ConstanciaController::class, 'constancia_verify'])->name('constancia.verify');
+Route::get('recibo/arc/verify/{id}/{cedula}/{ano}', [ReciboArcController::class, 'recibo_arc_verify'])->name('recibo_arc.verify');
 
 Route::get('test', fn () => phpinfo());
 
@@ -84,6 +87,10 @@ Route::group(['middleware' => ['auth']], function() {
     /* Rutas Recibo de Pago */
     Route::get('recibopago/{cedula}/{ano}/{mes}', [ReciboPagoController::class, 'recibo_pago_pdf'])->name('recibopago.pdf');
     Route::get('users/recibos/index', [UserReciboController::class, 'index'])->name('user.recibo.index');
+
+    /* Rutas ARC */
+    Route::get('recibo/arc/{cedula}/{ano}', [ReciboArcController::class, 'recibo_arc_pdf'])->name('recibo.arc.pdf');
+    Route::get('users/recibos/arc/index', [UserReciboArcController::class, 'index'])->name('user.recibo.arc.index');
 
     /* Rutas Constancia de Trabajo */
     Route::post('constancia/{cedula}', [ConstanciaController::class, 'constancia_pdf'])->name('constancia.pdf');

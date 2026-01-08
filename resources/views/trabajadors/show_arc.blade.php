@@ -14,7 +14,7 @@
         <div class="card">
             <div class="card-header bg-primary">
                 <div class="float-start">
-                    Información de Trabajador, Mes: {{$trabajador->mes}} Año: {{$trabajador->ano}}
+                    Información de Trabajador
                 </div>
                 @unlessrole('user')
                 <div class="float-end">
@@ -113,60 +113,34 @@
                     </div>
                 </div>
                 <hr>
-                <h2 class="text-center mb-4">Recibos de Pago y Planilla ARC</h2>
+                <h2 class="text-center mb-4">Planilla ARC</h2>
 
-                <div class="row">
-                    <div class="col-md-6">
-                        {{ $dataTable->table() }}
-                    </div>
-                    <div class="col-md-6">
-                        @php
-                            use Carbon\Carbon;
-                            $anoActual = Carbon::now()->year;
-                            $anoAnterior = $anoActual - 1;
-                        @endphp
-                        <div class="row justify-content-center">
-                                <div class="col-md-8 mb-3">
-                                    <div class="card text-center h-100">
-                                        <div class="card-body">
-                                            <h3 class="text-center">{{ $anoAnterior }}</h3>
-                                            <p class="card-text">Planilla ARC</p>
-                                            <a href="{{ route('recibo.arc.pdf', [$trabajador->cedula, $anoAnterior]) }}" 
-                                                class="btn btn-success btn-lg">
-                                                <i class="fa fa-download"></i> Descargar
-                                            </a>
-                                        </div>
-                                    </div>
+                @php
+                    use Carbon\Carbon;
+                    $anoActual = Carbon::now()->year;
+                    $anoAnterior = $anoActual - 1;
+                @endphp
+                <div class="row justify-content-center">
+                        <div class="col-md-4 mb-3">
+                            <div class="card text-center h-100">
+                                <div class="card-body">
+                                    <h3 class="text-center">{{ $anoAnterior }}</h3>
+                                    <p class="card-text">Planilla ARC</p>
+                                    <a href="{{ route('recibo.arc.pdf', [$trabajador->cedula, $anoAnterior]) }}" 
+                                       class="btn btn-success btn-lg">
+                                        <i class="fa fa-download"></i> Descargar
+                                    </a>
                                 </div>
                             </div>
                         </div>
                 </div>
-
+                
+                <div class="alert alert-info mt-4">
+                    <i class="fa fa-info-circle"></i>
+                    <strong>Información:</strong> La Planilla ARC muestra el consolidado anual de sus asignaciones y deducciones de ley.
+                </div>
             </div>
         </div>
     </div>
 
 @endsection
-
-@push('scripts')
-    {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Esperar a que DataTable se inicialice
-            setTimeout(function() {
-                var table = $('#trabajadorsindividual-table').DataTable();
-                
-                // Configurar ordenamiento numérico para las columnas de año y mes
-                $.fn.dataTable.ext.type.order['num-pre'] = function(data) {
-                    // Convertir a número, manejar valores vacíos
-                    var num = parseFloat(data) || 0;
-                    return num;
-                };
-                
-                // Forzar reordenamiento inicial
-                table.order([0, 'desc'], [1, 'desc']).draw();
-            }, 500);
-        });
-    </script>
-@endpush

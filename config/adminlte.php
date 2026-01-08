@@ -333,6 +333,12 @@ return [
             'can' => ['view-trabajador'],
         ],
         [
+            'text' => 'Recibos ARC',
+            'route' => 'user.recibo.arc.index',
+            'icon' => 'fa fa-receipt',
+            'can' => ['view-trabajador'],
+        ],
+        [
             'text' => 'Constancia de Trabajo',
             'route' => 'user.constancia.index',
             'icon' => 'fa fa-file-invoice',
