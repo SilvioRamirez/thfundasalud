@@ -8,6 +8,7 @@ use App\Models\Trabajador;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Carbon\Carbon;
+use App\Models\UbicacionFisica;
 
 class ReciboArcController extends Controller
 {
@@ -82,6 +83,8 @@ class ReciboArcController extends Controller
         // Preparar la ruta del código QR
         $ruta = route('recibo_arc.verify', [$trabajador->id, $trabajador->cedula, $ano]);
 
+        $ubicacion_fisica = UbicacionFisica::where('id', auth()->user()->ubicacion_fisica_id)->first();
+
         $pdf = PDF::loadView('trabajadors.pdf.planilla_arc', compact(
             'trabajador',
             'fecha',
@@ -90,10 +93,11 @@ class ReciboArcController extends Controller
             'totalAnualAsignaciones',
             'deduccionesLey',
             'totalDeduccionesLey',
-            'ano'
+            'ano',
+            'ubicacion_fisica'
         ))->setPaper('A4', 'portrait');
 
-        //return  $pdf->stream();
+        return  $pdf->stream();
 
         return $pdf->download('Planilla ARC ' . $trabajador->cedula . '_' . $ano . '.pdf');
     }

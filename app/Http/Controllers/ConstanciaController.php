@@ -41,19 +41,24 @@ class ConstanciaController extends Controller
         // Genera la fecha en q es genera el pdf
         $fecha = now();
 
+        // Verificar que existan registros de primera quincena
+        if ($trabajador->primeraQuincena->isEmpty()) {
+            abort(404, 'No se encontraron registros de primera quincena para generar la constancia');
+        }
+
         $turno = $request->turno;
         $ubicacion_fisica = UbicacionFisica::where('ubicacion_fisica', $request->ubicacion_fisica)->first();
         $nota = $request->nota;
 
-        // Preparar la ruta del codigo qr
-        $ruta = route('constancia.verify', [$trabajador->id, $trabajador->cedula, $trabajador->primeraQuincena[0]->ano, $trabajador->primeraQuincena[0]->mes]);
+        // Preparar la ruta del codigo qr usando las variables ya disponibles
+        $ruta = route('constancia.verify', [$trabajador->id, $trabajador->cedula, $ano, $mes]);
 
         $pdf = PDF::loadView('trabajadors.pdf.constancia', compact('trabajador', 'fecha', 'ruta', 'turno', 'ubicacion_fisica', 'nota'))
                     ->setPaper('A4','portrait');
 
         /* return  $pdf->stream(); */
                     
-        return $pdf->download('Constancia de Trabajo '.$trabajador->cedula.'_'.$trabajador->primeraQuincena[0]->ano.'_'.$trabajador->primeraQuincena[0]->mes.'.pdf');
+        return $pdf->download('Constancia de Trabajo '.$trabajador->cedula.'_'.$ano.'_'.$mes.'.pdf');
     }
 
     public function constancia_verify(string $id, string $cedula, string $ano, string $mes)

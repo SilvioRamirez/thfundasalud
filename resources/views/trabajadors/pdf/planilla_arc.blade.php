@@ -140,7 +140,7 @@
 
         .footer-info {
             position: fixed;
-            bottom: 2cm;
+            bottom: 1cm;
             left: 0;
             width: 100%;
             text-align: center;
@@ -149,8 +149,8 @@
 
         .qr-code {
             position: fixed;
-            bottom: 6cm;
-            right: 8.5cm;
+            bottom: 5.5cm;
+            right: 2cm;
         }
 
         br {
@@ -158,11 +158,31 @@
             content: "";
             margin-top: 0.04cm;
         }
+
+        .firma-section {
+            margin-top: 1cm;
+            padding: 0.6cm;
+            /* border: 1px solid #000000; */
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-radius: 10px;
+        }
+
+        .firma-info {
+            flex: 1;
+            text-align: center;
+            font-size: 9px;
+            line-height: 1.2;
+        }
+
     </style>
 </head>
 <body>
 
     @php
+        use App\Models\Setting;
         $meses = [
             1 => 'ENERO', 2 => 'FEBRERO', 3 => 'MARZO', 4 => 'ABRIL',
             5 => 'MAYO', 6 => 'JUNIO', 7 => 'JULIO', 8 => 'AGOSTO',
@@ -272,7 +292,7 @@
         <p><strong>FUNDACIÓN TRUJILLANA DE LA SALUD</strong></p>
         <p style="margin-top: 10px;">
             <strong>AGENTE DE RETENCIÓN</strong><br>
-            Teléfono: 0.78272-23670.7815
+            Correo: {{ $ubicacion_fisica->correo }}
         </p>
         <p style="margin-top: 5px;">
             <strong>FECHA Y HORA DE IMPRESIÓN:</strong> {{ $fecha->format('d') }} de {{ $mesActual }} de {{ $fecha->format('Y') }} - {{ $fecha->format('H:i') }}
@@ -282,6 +302,26 @@
     <!-- QR Code -->
     <div class="qr-code">
         <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(80)->generate($ruta)) !!}">
+    </div>
+
+    <!-- Sección de firma -->
+    <div class="firma-section">
+        <div class="firma-info">
+            <div class="director-name" style="font-weight: bold; color: #000000; font-size: 11px;">{{ $ubicacion_fisica->titulo }} {{ $ubicacion_fisica->coordinador }}</div>
+            <p style="margin-bottom: 0.2cm; font-weight: bold; color: #000000;">
+                @if($ubicacion_fisica->ubicacion_fisica == 'FUNDASALUD (SEDE)')
+                    DIRECTOR ESTADAL DE TALENTO HUMANO <br> FUNDACION TRUJILLANA DE LA SALUD DEL ESTADO TRUJILLO <br>
+                @else
+                    COORDINADOR (A) DE TALENTO HUMANO <br> {{ $ubicacion_fisica->ubicacion_fisica }}
+                @endif
+                @if($ubicacion_fisica->ubicacion_fisica == 'FUNDASALUD (SEDE)')
+                    DESIGNACIÓN {{Setting::get('designacion_director_talento_humano')}} <br>
+                    RESOLUCIÓN {{Setting::get('resolucion_director_talento_humano')}} <br>
+                    SUSCRITA POR LA MINISTRA DEL PODER POPULAR PARA LA SALUD
+                @endif
+            </p>
+        </div>
+
     </div>
 
 </body>
