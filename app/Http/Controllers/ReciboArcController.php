@@ -184,4 +184,31 @@ class ReciboArcController extends Controller
             'ano'
         ));
     }
+
+    public function arc_check_cedula(Request $request)
+    {
+        $cedula = $request->cedula;
+        $ano = date('Y');
+        
+        $trabajador = Trabajador::where('cedula', $cedula)->latest()->first();;
+
+
+        if (!$trabajador) {
+            abort(403, 'EL USUARIO NO PUEDE REALIZAR ESTA ACCIÓN');
+        }
+
+        if ($trabajador->cuenta == 0) {
+            abort(403, 'HA OCURRIDO UN ERROR AL INTENTAR PROCESAR LA INFORMACIÓN, POR FAVOR CONSULTAR EN SU COORDINACIÓN DE ADMINISTRACIÓN DE TALENTO HUMANO');
+        }
+
+        $trabajadorId = $trabajador->id;
+        
+        return view('trabajadors.show_arc', compact('trabajador'));
+
+    }
+
+    public function arc_check()
+    {
+        return view('arc.check');
+    }
 }

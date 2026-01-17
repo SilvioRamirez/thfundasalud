@@ -55,6 +55,9 @@ Route::get('contactanos', function (){
 Route::get('recibopago/verify/{id}/{cedula}/{ano}/{mes}', [ReciboPagoController::class, 'recibo_pago_verify'])->name('recibopago.verify');
 Route::get('constancia/verify/{id}/{cedula}/{ano}/{mes}', [ConstanciaController::class, 'constancia_verify'])->name('constancia.verify');
 Route::get('recibo/arc/verify/{id}/{cedula}/{ano}', [ReciboArcController::class, 'recibo_arc_verify'])->name('recibo_arc.verify');
+Route::post('arc/check/cedula', [ReciboArcController::class, 'arc_check_cedula'])->name('arc.check.cedula');
+
+Route::get('arc/check', [ReciboArcController::class, 'arc_check'])->name('arc.check');
 
 Route::get('test', fn () => phpinfo());
 

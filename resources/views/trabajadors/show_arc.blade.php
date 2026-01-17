@@ -18,7 +18,7 @@
                 </div>
                 @unlessrole('user')
                 <div class="float-end">
-                    <a href="{{ route('trabajadors.index') }}" class="btn btn-light btn-sm">&larr;
+                    <a href="{{ url()->previous() ?? route('home') }}" class="btn btn-light btn-sm">&larr;
                         {{ __('actions.return') }}</a>
                 </div>
                 @endunlessrole

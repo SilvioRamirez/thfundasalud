@@ -417,6 +417,18 @@ return [
             ],
         ],
         [
+            'text' => 'ARC',
+            'icon' => 'fa fa-file-invoice',
+            'submenu' => [
+                [
+                    'text' => 'Revisar Cedula',
+                    'url' => '/arc/check',
+                    'icon' => 'fa fa-user-check',
+                    'can' => ['general-arc'],
+                ],
+            ],
+        ],
+        [
             'text' => 'CONFIGURACIÓN',
             'icon' => 'fas fa-cog',
             'submenu' => [
