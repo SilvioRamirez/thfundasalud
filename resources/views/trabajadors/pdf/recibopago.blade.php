@@ -509,6 +509,18 @@
                         <td class="" style="text-align: right;">{{ formatear_moneda($trabajador->primeraQuincena[0]->aguinaldos)}}</td>
                     </tr>
                 @endif
+                @if ($trabajador->primeraQuincena[0]->bono_juguetes != 0)
+                    <tr>
+                        <td class=""><strong>BONO DE JUGUETES:</strong></td>
+                        <td class="" style="text-align: right;">{{ formatear_moneda($trabajador->primeraQuincena[0]->bono_juguetes)}}</td>
+                    </tr>
+                @endif
+                @if ($trabajador->primeraQuincena[0]->bono_fin_de_ano != 0)
+                    <tr>
+                        <td class=""><strong>BONO FIN DE ANO:</strong></td>
+                        <td class="" style="text-align: right;">{{ formatear_moneda($trabajador->primeraQuincena[0]->bono_fin_de_ano)}}</td>
+                    </tr>
+                @endif
 
                 {{-- Segunda Quincena --}}
 
@@ -652,6 +664,12 @@
                     <tr>
                         <td class=""><strong>BONO DIA DEL OBRERO:</strong></td>
                         <td class="" style="text-align: right;">{{ formatear_moneda($trabajador->segundaQuincena[0]->bono_dia_del_obrero) }}</td>
+                    </tr>
+                @endif
+                @if ($trabajador->segundaQuincena[0]->bono_navideno != 0)
+                    <tr>
+                        <td class=""><strong>BONO NAVIDENO:</strong></td>
+                        <td class="" style="text-align: right;">{{ formatear_moneda($trabajador->segundaQuincena[0]->bono_navideno) }}</td>
                     </tr>
                 @endif
             </tbody>

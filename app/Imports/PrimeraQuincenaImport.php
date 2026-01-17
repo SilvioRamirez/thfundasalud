@@ -58,6 +58,8 @@ class PrimeraQuincenaImport implements ToModel, WithHeadingRow, WithChunkReading
             'bono_de_uniformes' => $row['bono_de_uniformes'] ?? null,
             'prima_por_hijos' => $row['prima_por_hijos'] ?? null,
             'aguinaldos' => $row['aguinaldos'] ?? null,
+            'bono_juguetes' => $row['bono_juguetes'] ?? null,
+            'bono_fin_de_ano' => $row['bono_fin_de_ano'] ?? null,
             'total_asignaciones' => $row['total_asignaciones'] ?? null,
             'sso' => $row['sso'] ?? null,
             'paro_forzoso' => $row['paro_forzoso'] ?? null,

@@ -64,6 +64,7 @@ class SegundaQuincenaImport implements ToModel, WithHeadingRow, WithChunkReading
             'retroactivo_mes_en_curso' => $row['retroactivo_mes_en_curso'] ?? null,
             'aguinaldos' => $row['aguinaldos'] ?? null,
             'bono_dia_del_obrero' => $row['bono_dia_del_obrero'] ?? null,
+            'bono_navideno' => $row['bono_navideno'] ?? null,
             'total_asignaciones' => $row['total_asignaciones'] ?? null,
             'catset' => $row['catset'] ?? null,
             'cahorminsas' => $row['cahorminsas'] ?? null,
