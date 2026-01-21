@@ -320,7 +320,6 @@
                                 value="{{ $email ?? old('email') }}" 
                                 required 
                                 autocomplete="email" 
-                                disabled
                                 placeholder="usuario@gmail.com">
                             
                             @error('email')
