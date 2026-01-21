@@ -28,6 +28,8 @@ use App\Http\Controllers\ConstanciaController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\ReciboArcController;
 use App\Http\Controllers\UserReciboArcController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 
 use App\Mail\ContactanosMailable;
 use Illuminate\Support\Facades\Mail;
@@ -40,6 +42,12 @@ Route::post('logout',  [LoginController::class,'logout'])->name('logout');
 // Registration Routes...
 Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('register', [RegisterController::class, 'register']);
+
+//Rutas de recuperación de contraseña
+Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
 
 Route::get('/', function () {
     return view('welcome');
