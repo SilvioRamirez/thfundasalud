@@ -307,6 +307,8 @@
     <!-- Sección de firma -->
     <div class="firma-section">
         <div class="firma-info">
+
+            @if($ubicacion_fisica->ubicacion_fisica == 'FUNDASALUD (SEDE)')
             <div class="director-name" style="font-weight: bold; color: #000000; font-size: 11px;">{{ Setting::get('director_talento_humano') }}</div>
             <p style="margin-bottom: 0.2cm; font-weight: bold; color: #000000;">
                     DIRECTOR ESTADAL DE TALENTO HUMANO <br> FUNDACION TRUJILLANA DE LA SALUD DEL ESTADO TRUJILLO <br>
@@ -314,6 +316,12 @@
                     RESOLUCIÓN {{Setting::get('resolucion_director_talento_humano')}} <br>
                     SUSCRITA POR LA MINISTRA DEL PODER POPULAR PARA LA SALUD
             </p>
+            @else
+            <div class="director-name" style="font-weight: bold; color: #000000; font-size: 11px;">{{ $ubicacion_fisica->coordinador }}</div>
+            <p style="margin-bottom: 0.2cm; font-weight: bold; color: #000000;">
+                    COORDINADOR (A) DE TALENTO HUMANO <br> {{ $ubicacion_fisica->ubicacion_fisica }} <br>
+            </p>
+            @endif
         </div>
     </div>
 

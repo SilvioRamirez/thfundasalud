@@ -56,8 +56,11 @@ class ReciboArcController extends Controller
             $segunda = $segundasQuincenas->get($mes);
 
             if ($primera && $segunda) {
-                // Total asignaciones del mes (descontando el bono vacacional que se paga una vez al año)
-                $totalMes = $primera->total_asignaciones + $segunda->total_asignaciones - ($segunda->bono_vacacional ?? 0);
+                // Total asignaciones del mes (descontando bono vacacional y aguinaldos, conceptos pagados una vez al año)
+                $totalMes = $primera->total_asignaciones + $segunda->total_asignaciones
+                    - ($segunda->bono_vacacional ?? 0)
+                    - ($primera->aguinaldos ?? 0)
+                    - ($segunda->aguinaldos ?? 0);
                 $totalAnualAsignaciones += $totalMes;
 
                 // Deducciones de ley
@@ -159,8 +162,11 @@ class ReciboArcController extends Controller
             $segunda = $segundasQuincenas->get($mes);
 
             if ($primera && $segunda) {
-                // Total asignaciones del mes (descontando el bono vacacional que se paga una vez al año)
-                $totalMes = $primera->total_asignaciones + $segunda->total_asignaciones - ($segunda->bono_vacacional ?? 0);
+                // Total asignaciones del mes (descontando bono vacacional y aguinaldos, conceptos pagados una vez al año)
+                $totalMes = $primera->total_asignaciones + $segunda->total_asignaciones
+                    - ($segunda->bono_vacacional ?? 0)
+                    - ($primera->aguinaldos ?? 0)
+                    - ($segunda->aguinaldos ?? 0);
                 $totalAnualAsignaciones += $totalMes;
 
                 $deduccionesLey['sso'] += ($primera->sso ?? 0) + ($segunda->sso ?? 0);
